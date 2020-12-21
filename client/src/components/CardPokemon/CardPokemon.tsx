@@ -1,8 +1,8 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from "@material-ui/core/Typography";
 
 // import AvatarGenerator from "../../generators/AvatarGenerator";
@@ -10,17 +10,33 @@ import TypeGenerator from "../generators/TypeGenerator";
 // import CardName from "./CardName";
 import PokemonProps from "../../types/Pokemon";
 
-const useStyles = makeStyles((theme) => ({
+interface StyleProps {
+  container: BaseCSSProperties,
+}
+
+type PropsClasses = Record<keyof StyleProps, string>
+
+let baseStyle: StyleProps = {
   container: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: "#FFF",
     borderWidth: 1,
     borderRadius: 10,
   },
-}));
+}
+const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
+
+// const useStyles = createStyles(({ palette }: Theme) => ({
+//   container: {
+//     backgroundColor: palette.primary.main,
+//     borderWidth: 1,
+//     borderRadius: 10,
+//   },
+// }));
 
 
 export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.Element {
-  const classes = useStyles();
+  // const classes = useStyles();
+  const classes: PropsClasses = useStyles({} as StyleProps);
   console.log('img', img)
   return (
     <Box className={classes.container} boxShadow={3} m={2}>

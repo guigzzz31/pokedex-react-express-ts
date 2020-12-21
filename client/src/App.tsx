@@ -6,7 +6,7 @@ export default function App(): JSX.Element {
   const pokemon: PokemonProps = data;
   return (
     <>
-      <div>Hello React App from scratch</div>
+      <div>Pokedex from scratch</div>
       <CardPokemon {...pokemon} />
     </>
   )

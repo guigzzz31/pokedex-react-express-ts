@@ -1,6 +1,6 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { Theme, createMuiTheme } from "@material-ui/core/styles";
 
-const theme = createMuiTheme({
+export const theme: Theme = createMuiTheme({
   palette: {
     primary: {
       //white
@@ -29,10 +29,6 @@ const theme = createMuiTheme({
       default: "#E5E5E5",
     },
     //font families
-    typography: {
-      fontFamily: ["Roboto", "Quicksand", "Montserrat", "Lato"].join(","),
-    },
   },
 });
 
-export default theme;
