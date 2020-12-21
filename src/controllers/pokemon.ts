@@ -10,6 +10,12 @@ export default {
     res.status(201).json({ success: true, result });
   },
 
+  createAll: async (req:Request, res: Response) => {
+    await PokemonModel.init();
+    const result = await PokemonModel.insertMany(req.body)
+    res.status(201).json({ success: true, result });
+  },
+
   delete: async (req: Request, res: Response) => {
     const id = req.params._id;
     const result = await PokemonModel.findOneAndDelete({ _id: id });
@@ -24,8 +30,20 @@ export default {
     res.status(200).json(result);
   },
 
-  get: async (req: Request, res: Response) => {
+  getAllPokemon: async (req: Request, res: Response) => {
     const result = await PokemonModel.find();
+    res.status(200).json({ success: true, result });
+  },
+
+  getPokemonByID: async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const result = await PokemonModel.findOne({ id: id });
+    res.status(200).json({ success: true, result });
+  },
+
+  getPokemonByName: async (req: Request, res: Response) => {
+    const name = req.params.name;
+    const result = await PokemonModel.find({ name: name });
     res.status(200).json({ success: true, result });
   },
 };
