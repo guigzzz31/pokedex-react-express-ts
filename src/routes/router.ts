@@ -1,10 +1,11 @@
 import express from "express";
-import WilderController from "../controllers/pokemon";
+import PokemonController from "../controllers/pokemon";
 import catchErrorHandler from "../utils/errorHandler";
 const router = express.Router();
 
-router.post("/api/pokemon", catchErrorHandler(WilderController.create));
-router.get("/api/pokemon", catchErrorHandler(WilderController.get));
-router.put("/api/pokemon/:_id", catchErrorHandler(WilderController.like));
+router.post("/api/insert/pokemons", catchErrorHandler(PokemonController.create));
+router.get("/api/pokemons", catchErrorHandler(PokemonController.get));
+router.put("/api/pokemons/:_id", catchErrorHandler(PokemonController.like));
+router.delete("/api/delete/pokemon/:_id", catchErrorHandler(PokemonController.delete));
 
 export default router;
