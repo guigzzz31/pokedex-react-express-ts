@@ -4,12 +4,12 @@ type PokemonProps = {
   img: string;
   type: string[];
   stats: {
-    hp: number;
+    hp: string;
     attack: string;
     defense: string;
     spattack: string;
     spdefense: string;
-    speed: number;
+    speed: string;
   },
   moves: {
     level: {

@@ -25,8 +25,9 @@ export default function ParseColorType(typePokemon: string) {
       colorType = '#C6EAFF';
       break;
     }
-    case 'Fight': {
-      colorType = '#FFB169';
+    case 'Fighting': {
+      colorType = '#81341F';
+      // colorType = '#FFB169';
       break;
     }
     case 'Poison': {
