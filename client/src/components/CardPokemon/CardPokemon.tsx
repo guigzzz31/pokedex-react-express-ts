@@ -10,6 +10,8 @@ import TypeGenerator from "../generators/TypeGenerator";
 // import CardName from "./CardName";
 import PokemonProps from "../../types/Pokemon";
 
+import CustomToUpperCase from "../../hooks/CustomToUpperCase";
+
 interface StyleProps {
   container: BaseCSSProperties,
 }
@@ -53,10 +55,16 @@ export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.
           </Box>
         </Grid>
         <Grid item>
-          <Box zIndex={3} p={1}>
+          <Box p={1}>
             {/* <CardName title={name} /> */}
-            <Typography>{id}</Typography>
-            <Typography>{name}</Typography>
+            <Grid spacing={1} container>
+              <Grid item>
+                <Typography variant="h5">{id}</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h5">{CustomToUpperCase(name)}</Typography>
+              </Grid>
+            </Grid>
             <TypeGenerator type={type} />
           </Box>
         </Grid>
