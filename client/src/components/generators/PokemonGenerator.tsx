@@ -9,7 +9,7 @@ import { Container } from "@material-ui/core";
 
 type Pokemons = PokemonProps[];
 
-export default function PokemonGenerator(pokemons: Pokemons) {
+export default function PokemonGenerator(pokemons: any) {
   console.log("pokemon", pokemons)
   let arr: Pokemons = Object.values(pokemons)
   console.log('arr', arr)
