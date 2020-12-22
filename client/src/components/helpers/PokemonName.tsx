@@ -27,7 +27,7 @@ let baseStyle: StyleProps = {
   nameText: {
     color: "#000",
     fontWeight: 900,
-    fontSize: 18,
+    fontSize: 14,
   },
 }
 const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
