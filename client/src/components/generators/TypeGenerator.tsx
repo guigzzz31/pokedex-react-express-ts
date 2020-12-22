@@ -15,8 +15,8 @@ export default function TypeGenerator({ type }: TypeProps) {
       {type
         ? type.map((item: string) => {
           return (
-            <Grid item>
-              <Box className={classes.typeBox} bgcolor={ParseColorType(item)}>
+            <Grid key={item} item>
+              <Box key={item} className={classes.typeBox} bgcolor={ParseColorType(item)}>
                 <Typography align="center" className={classes.typeText} key={item}>{CustomToUpperCase(item)}</Typography>
               </Box>
             </Grid>
