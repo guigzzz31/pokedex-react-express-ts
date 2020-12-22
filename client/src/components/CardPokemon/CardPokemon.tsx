@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
-// import AvatarGenerator from "../../generators/AvatarGenerator";
+import PokemonAvatar from "../helpers/PokemonAvatar";
 import PokemonNumber from "../helpers/PokemonNumber";
 import PokemonName from "../helpers/PokemonName";
 import TypeGenerator from "../generators/TypeGenerator";
@@ -16,18 +16,15 @@ export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.
   const classes: PropsClasses = useStyles({} as StyleProps);
   console.log('img', img)
   return (
-    <Box className={classes.container} boxShadow={3} m={2}>
+    <Box className={classes.container} boxShadow={3} p={3}>
       <Grid
         justify="center"
         alignItems="center"
-        direction="row"
         spacing={1}
         container
       >
         <Grid item>
-          <Box>
-            <img alt={name} src={img} />
-          </Box>
+          <PokemonAvatar img={img} />
         </Grid>
         <Grid item>
           <Box p={1}>
@@ -45,7 +42,7 @@ export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </ Box>
   );
 }
 
@@ -60,8 +57,8 @@ let baseStyle: StyleProps = {
   container: {
     backgroundColor: "#FFF",
     borderWidth: 1,
-    borderRadius: 10,
-    maxWidth: 800,
+    borderRadius: 18,
+    maxWidth: 307,
   },
 }
 const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);

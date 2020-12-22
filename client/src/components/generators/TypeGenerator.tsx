@@ -39,7 +39,7 @@ let baseStyle: StyleProps = {
   typeText: {
     color: "#FFF",
     fontWeight: 900,
-    fontSize: 12,
+    fontSize: 11,
   },
   typeBox: {
     borderRadius: 9,
