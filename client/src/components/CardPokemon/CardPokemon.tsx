@@ -1,17 +1,38 @@
-import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
-
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 
-// import AvatarGenerator from "../../generators/AvatarGenerator";
-import TypeGenerator from "../generators/TypeGenerator";
-// import CardName from "./CardName";
+import { Theme, makeStyles } from "@material-ui/core/styles";
+import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
+
+import InfoPokemon from "./InfoPokemon";
+
 import PokemonProps from "../../types/Pokemon";
 
+
+export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.Element {
+  const classes: PropsClasses = useStyles({} as StyleProps);
+  return (
+    <Box className={classes.container} boxShadow={3}>
+      <Box className={classes.info}>
+        <InfoPokemon id={id} name={name} img={img} type={type} />
+      </Box>
+      <Grid justify="flex-end" container>
+        <Button className={classes.likeButton}>
+          <ThumbUpOutlinedIcon className={classes.likeIcon} />
+        </Button>
+      </Grid>
+    </ Box>
+  );
+}
+
+//style
 interface StyleProps {
   container: BaseCSSProperties,
+  likeButton: BaseCSSProperties,
+  likeIcon: BaseCSSProperties,
+  info: BaseCSSProperties
 }
 
 type PropsClasses = Record<keyof StyleProps, string>
@@ -20,47 +41,19 @@ let baseStyle: StyleProps = {
   container: {
     backgroundColor: "#FFF",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 18,
+    maxWidth: 350,
   },
+  likeIcon: {
+    color: "#E4E4E4",
+  },
+  likeButton: {
+    borderWidth: 2,
+    borderRadius: 90,
+    borderColor: "#E4E4E4"
+  },
+  info: {
+    paddingTop: 23,
+  }
 }
 const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
-
-// const useStyles = createStyles(({ palette }: Theme) => ({
-//   container: {
-//     backgroundColor: palette.primary.main,
-//     borderWidth: 1,
-//     borderRadius: 10,
-//   },
-// }));
-
-
-export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.Element {
-  // const classes = useStyles();
-  const classes: PropsClasses = useStyles({} as StyleProps);
-  console.log('img', img)
-  return (
-    <Box className={classes.container} boxShadow={3} m={2}>
-      <Grid
-        justify="center"
-        alignItems="center"
-        direction="row"
-        spacing={1}
-        container
-      >
-        <Grid item>
-          <Box>
-            <img alt={name} src={img} />
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box zIndex={3} p={1}>
-            {/* <CardName title={name} /> */}
-            <Typography>{id}</Typography>
-            <Typography>{name}</Typography>
-            <TypeGenerator type={type} />
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}

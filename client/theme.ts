@@ -15,7 +15,7 @@ export const theme: Theme = createMuiTheme({
     text: {
       //black
       primary: "#000000",
-      secondary: "#191516",
+      secondary: "#FFFFFF",
     },
     error: {
       //blush
