@@ -1,12 +1,33 @@
-import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import { Box, Grid, Typography } from "@material-ui/core";
+import { Theme, makeStyles } from "@material-ui/core/styles";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 import ParseColorType from "../../hooks/ParseColorType";
 
 type TypeProps = { type: string[] };
+
+export default function TypeGenerator({ type }: TypeProps) {
+  const classes: PropsClasses = useStyles({} as StyleProps);
+  return (
+    <Grid direction="column" spacing={1} container>
+      {type
+        ? type.map((item: string) => {
+          return (
+            <Grid item>
+              <Box className={classes.typeBox} bgcolor={ParseColorType(item)}>
+                <Typography align="center" className={classes.typeText} key={item}>{CustomToUpperCase(item)}</Typography>
+              </Box>
+            </Grid>
+          );
+        })
+        : null}
+    </Grid>
+  );
+}
+
+//style
 interface StyleProps {
   typeBox: BaseCSSProperties,
   typeText: BaseCSSProperties,
@@ -26,26 +47,3 @@ let baseStyle: StyleProps = {
   }
 }
 const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
-
-
-export default function SkillGenerator({ type }: TypeProps) {
-  const classes: PropsClasses = useStyles({} as StyleProps);
-
-
-
-  return (
-    <Grid direction="column" spacing={1} container>
-      {type
-        ? type.map((item: string) => {
-          return (
-            <Grid item>
-              <Box className={classes.typeBox} bgcolor={ParseColorType(item)}>
-                <Typography align="center" className={classes.typeText} key={item}>{CustomToUpperCase(item)}</Typography>
-              </Box>
-            </Grid>
-          );
-        })
-        : null}
-    </Grid>
-  );
-}

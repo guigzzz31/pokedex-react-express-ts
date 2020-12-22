@@ -1,40 +1,15 @@
-import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
-
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+
+import { Theme, makeStyles } from "@material-ui/core/styles";
+import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
 // import AvatarGenerator from "../../generators/AvatarGenerator";
+import PokemonNumber from "../helpers/PokemonNumber";
+import PokemonName from "../helpers/PokemonName";
 import TypeGenerator from "../generators/TypeGenerator";
-// import CardName from "./CardName";
+
 import PokemonProps from "../../types/Pokemon";
-
-import CustomToUpperCase from "../../hooks/CustomToUpperCase";
-
-interface StyleProps {
-  container: BaseCSSProperties,
-}
-
-type PropsClasses = Record<keyof StyleProps, string>
-
-let baseStyle: StyleProps = {
-  container: {
-    backgroundColor: "#FFF",
-    borderWidth: 1,
-    borderRadius: 10,
-  },
-}
-const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
-
-// const useStyles = createStyles(({ palette }: Theme) => ({
-//   container: {
-//     backgroundColor: palette.primary.main,
-//     borderWidth: 1,
-//     borderRadius: 10,
-//   },
-// }));
-
 
 export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.Element {
   // const classes = useStyles();
@@ -56,15 +31,16 @@ export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.
         </Grid>
         <Grid item>
           <Box p={1}>
-            {/* <CardName title={name} /> */}
-            <Grid spacing={1} container>
-              <Grid item>
-                <Typography variant="h5">{id}</Typography>
+            <Box mb={1}>
+              <Grid spacing={1} container>
+                <Grid item>
+                  <PokemonNumber id={id} />
+                </Grid>
+                <Grid item>
+                  <PokemonName name={name} />
+                </Grid>
               </Grid>
-              <Grid item>
-                <Typography variant="h5">{CustomToUpperCase(name)}</Typography>
-              </Grid>
-            </Grid>
+            </Box>
             <TypeGenerator type={type} />
           </Box>
         </Grid>
@@ -72,3 +48,20 @@ export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.
     </Box>
   );
 }
+
+//style
+interface StyleProps {
+  container: BaseCSSProperties,
+}
+
+type PropsClasses = Record<keyof StyleProps, string>
+
+let baseStyle: StyleProps = {
+  container: {
+    backgroundColor: "#FFF",
+    borderWidth: 1,
+    borderRadius: 10,
+    maxWidth: 800,
+  },
+}
+const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
