@@ -43,6 +43,7 @@ let baseStyle: StyleProps = {
     borderWidth: 1,
     borderRadius: 18,
     maxWidth: 350,
+    minWidth: 350,
   },
   likeIcon: {
     color: "#E4E4E4",

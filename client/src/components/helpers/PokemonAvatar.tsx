@@ -1,6 +1,7 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Box } from "@material-ui/core";
 
 type AvatarProps = { img: string };
 
@@ -8,7 +9,9 @@ export default function PokemonAvatar({ img }: AvatarProps): JSX.Element {
   const classes: PropsClasses = useStyles({} as StyleProps);
 
   return (
-    <CardMedia image={img} className={classes.avatar} />
+    <Box>
+      <img src={img} alt="me" className={classes.avatar} />
+    </Box>
   )
 }
 
