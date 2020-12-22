@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
 import PokemonModel from "../models/Pokemon";
+import PokemonModelOutput from "../models/Pokemon";
 
 
 export default {
@@ -31,7 +32,7 @@ export default {
   },
 
   getAllPokemon: async (req: Request, res: Response) => {
-    const result = await PokemonModel.find();
+    const result = await PokemonModelOutput.find();
     res.status(200).json({ success: true, result });
   },
 
