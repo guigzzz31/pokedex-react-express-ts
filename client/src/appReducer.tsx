@@ -1,27 +1,12 @@
-import PokemonProps from './types/Pokemon';
+// import PokemonProps from './types/Pokemon';
 
 const appReducer = (state: any, action: any) => {
   switch (action.type) {
+    case "START_LOADING":
+      return { ...state, isLoading: action.isLoading }
+
     case "POKEMONS_FETCH_SUCCESS":
-      return { ...state, pokemons: action.pokemons };
-
-    // case "WILDER_ADDED":
-    //   return {
-    //     ...state,
-    //     showAddForm: false,
-    //     successMessage: `The wilder ${action.newWilder.name} has been successfully added`,
-    //     wilders: [{ ...action.newWilder, justAdded: true }, ...state.wilders],
-    //   };
-
-    // case "WILDER_DELETED":
-    //   return {
-    //     ...state,
-    //     wilders: [
-    //       { ...action.deletedWilder, justDeleted: true },
-    //       ...state.wilders,
-    //     ],
-    //     deletedMessage: `The wilder ${action.deletedWilder.name} has been deleted`,
-    //   };
+      return { ...state, pokemons: action.pokemons, isLoading: !state.isLoading };
 
     case "TOGGLE_SHOW_ADD_FORM":
       return { ...state, showAddForm: !state.showAddForm };
