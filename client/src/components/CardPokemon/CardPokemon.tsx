@@ -52,6 +52,7 @@ export default function CardPokemon({ id, name, img, type, like }: PokemonProps)
       }
     };
     likePokemon();
+
   }
   return (
     <Box className={classes.container} boxShadow={3}>
