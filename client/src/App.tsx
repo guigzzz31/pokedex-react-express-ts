@@ -39,21 +39,44 @@ export default function App(): JSX.Element {
     setSearchType(event.target.value);
   };
 
+  // const handleChangeType = (event: any, options: any) => {
+  //   // const { options } = event.target.value;
+  //   console.log("options", options.selected)
+  //   const value: string[] | any = [];
+  //   for (let i = 0, l = options.length; i < l; i += 1) {
+  //     if (options[i].selected) {
+  //       value.push(options[i].value);
+  //     }
+  //   }
+  //   console.log("value", value)
+  //   setSearchType(value);
+  // };
+
   const { pokemons, isLoading } = state;
   useFetchPokemons(dispatch);
 
-  const results = !searchName && !searchNumber
-    ? pokemons
-    : pokemons
-      .filter((pokemon: PokemonProps) =>
-        pokemon.name.toLowerCase().includes(searchName.toLocaleLowerCase())
-      )
-      .filter((pokemon: PokemonProps) =>
-        pokemon.id.toLowerCase().includes(searchNumber.toLocaleLowerCase())
-      )
-  // .filter((pokemon: PokemonProps) =>
-  //   pokemon.type.includes(searchType.toLocaleLowerCase())
-  // )
+
+  function filterArray(array: [], filters: any) {
+    const filterKeys = Object.keys(filters);
+    return array.filter(item => {
+      return filterKeys.every(key => {
+        if (typeof filters[key] !== 'function') return true;
+        return filters[key](item[key]);
+      });
+    });
+  }
+
+  const filters = {
+    name: searchName ? (name: string) => name.toLowerCase().includes(searchName.toLocaleLowerCase()) : '',
+    id: searchNumber ? (id: string) => id.includes(searchNumber) : '',
+    type: searchType ? (type: string) => type.includes(searchType) : '',
+  }
+
+  const resultv1 = filterArray(pokemons, filters);
+
+  console.log("filert", filters)
+
+
   const classes: PropsClasses = useStyles({} as StyleProps);
 
   return (
@@ -68,14 +91,12 @@ export default function App(): JSX.Element {
           </Button>
         </Grid>
         <Grid item>
-          <SearchNav searchName={searchName} handleChange={handleChange} searchNumber={searchNumber} handleChangeNumber={handleChangeNumber} />
+          <SearchNav searchName={searchName} handleChange={handleChange} searchNumber={searchNumber} handleChangeNumber={handleChangeNumber} searchType={searchType} handleChangeType={handleChangeType} />
         </Grid>
         <Grid item>
-          <PokemonGenerator {...results} />
+          <PokemonGenerator {...resultv1} />
         </Grid>
       </Grid>
-
-      {/* <PokemonGenerator {...pokemons} /> */}
     </Box>
   )
 };

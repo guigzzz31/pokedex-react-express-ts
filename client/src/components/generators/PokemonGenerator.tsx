@@ -13,7 +13,7 @@ export default function PokemonGenerator(pokemons: Pokemons) {
   let arr: Pokemons = Object.values(pokemons)
   return (
     <Container maxWidth="lg">
-      <Grid container direction="row" spacing={5}>
+      <Grid container direction="row" justify="center" spacing={5}>
         {arr
           ? arr.map((pokemon: PokemonProps) => {
             return (

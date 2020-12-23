@@ -1,6 +1,10 @@
 export default function ParseColorType(typePokemon: string) {
   let colorType: string;
   switch (typePokemon) {
+    case '': {
+      colorType = '#OOO';
+      break;
+    }
     case 'Normal': {
       colorType = '#CACACA';
       break;
