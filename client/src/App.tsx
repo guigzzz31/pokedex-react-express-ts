@@ -1,46 +1,44 @@
-import React, { useReducer } from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-// import Link from '@material-ui/core/Link';
+
 import Pokedex from './components/Pokedex';
 import likedPokemons from './components/LikedPokemons';
+import Header from './components/Header';
 
 
 export default function App(): JSX.Element {
+  const classes: PropsClasses = useStyles({} as StyleProps);
+  const [pageSelected, setPageSelected] = useState('yooo');
+
+  function handlePage(event: any): any {
+    console.log("event", event)
+    setPageSelected(event.target.value)
+    console.log(pageSelected)
+  }
+
   return (
-    <Router>
-      <Grid direction="row" alignItems="center" justify="center" spacing={5} container>
-        <Grid item>
-          <Link to="/">
-            Pokedex
-      </Link>
-        </Grid>
-        <Grid item>
-          <Link to="/api/pokemons/liked">
-            Liked
-      </Link>
-        </Grid>
-      </Grid>
-      <Switch>
-        <Route exact path="/" component={Pokedex} />
-        <Route exact path="/api/pokemons/liked" component={likedPokemons} />
-      </Switch>
-    </Router>
+    <div className={classes.container}>
+
+      <Router>
+        <Header handlePage={handlePage} pageSelected={pageSelected} />
+        <Switch>
+          <Route exact path="/" component={Pokedex} />
+          <Route exact path="/api/pokemons/liked" component={likedPokemons} />
+        </Switch>
+      </Router>
+    </div>
   )
 };
 
 //style
 interface StyleProps {
-  textField: BaseCSSProperties,
+  container: BaseCSSProperties,
   likeButton: BaseCSSProperties,
   likeIcon: BaseCSSProperties,
   info: BaseCSSProperties
@@ -49,8 +47,8 @@ interface StyleProps {
 type PropsClasses = Record<keyof StyleProps, string>
 
 let baseStyle: StyleProps = {
-  textField: {
-    backgroundColor: "#FFF",
+  container: {
+    backgroundColor: "#F9F9F9",
     borderWidth: 1,
     borderRadius: 18,
   },

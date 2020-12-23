@@ -3,7 +3,7 @@ import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import appReducer from '../appReducer';
@@ -41,7 +41,7 @@ export default function Pokedex(): JSX.Element {
   const { pokemons, isLoading } = state;
   useFetchPokemons(dispatch);
 
-  function filterArray(array: [], filters: any) {
+  function filterPokemons(array: [], filters: any) {
     const filterKeys = Object.keys(filters);
     return array.filter(item => {
       return filterKeys.every(key => {
@@ -57,7 +57,7 @@ export default function Pokedex(): JSX.Element {
     type: searchType ? (type: string) => type.includes(searchType) : '',
   }
 
-  const result = filterArray(pokemons, filters);
+  const result = filterPokemons(pokemons, filters);
   const classes: PropsClasses = useStyles({} as StyleProps);
   return (
     <Box bgcolor='primary'>

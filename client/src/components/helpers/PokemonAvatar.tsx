@@ -1,7 +1,7 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
-import CardMedia from '@material-ui/core/CardMedia';
-import { Box } from "@material-ui/core";
+
+import Box from "@material-ui/core/Box";
 
 type AvatarProps = { img: string };
 
