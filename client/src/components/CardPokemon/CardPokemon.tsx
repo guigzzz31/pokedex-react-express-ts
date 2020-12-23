@@ -8,7 +8,7 @@ import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
 import InfoPokemon from "./InfoPokemon";
 
-import PokemonProps from "../../types/Pokemon";
+import PokemonProps from '../../types/Pokemon';
 
 
 export default function CardPokemon({ id, name, img, type }: PokemonProps): JSX.Element {
