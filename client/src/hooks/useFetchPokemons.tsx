@@ -11,18 +11,6 @@ const useFetchPokemons = (dispatch: any) => {
       // })
       try {
         const result = await axios("/api/pokemons");
-        // let pokemons = result.data.result.map((pokemon: any) => {
-        //   return {
-        //     id: pokemon.id,
-        //     _id: pokemon._id,
-        //     name: pokemon.name,
-        //     img: pokemon.img,
-        //     damages: pokemon.damages,
-        //     misc: pokemon.misc,
-        //     stats: pokemon.stats,
-        //     type: pokemon.type,
-        //   }
-        // })
         dispatch({
           type: "POKEMONS_FETCH_SUCCESS",
           pokemons: result.data.result,

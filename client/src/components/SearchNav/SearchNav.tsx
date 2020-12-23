@@ -1,29 +1,24 @@
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import TextField from '@material-ui/core/TextField';
-
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
+import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
-import SearchProps from '../../types/Search';
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import ParseColorType from "../../hooks/ParseColorType";
-import React from "react";
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 
-
-const types: string[] = ['Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel']
-
+import SearchProps from '../../types/Search';
+import { types } from './types'
 
 
 export default function SearchNav({ searchName, handleChange, searchNumber, handleChangeNumber, searchType, handleChangeType }: SearchProps): JSX.Element {
   const classes: PropsClasses = useStyles({} as StyleProps);
-  console.log("searchNav", searchType)
   return (
     <Box bgcolor='primary'>
       <Grid direction="row" alignItems="center" justify="center" spacing={5} container>

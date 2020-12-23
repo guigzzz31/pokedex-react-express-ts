@@ -1,11 +1,10 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-
+import Container from "@material-ui/core/Container";
 
 import CardPokemon from "../CardPokemon/CardPokemon";
 
 import PokemonProps from '../../types/Pokemon';
-import { Container } from "@material-ui/core";
 
 type Pokemons = PokemonProps[];
 
