@@ -1,4 +1,5 @@
 type PokemonProps = {
+  like: boolean,
   id: string;
   name: string;
   img: string;

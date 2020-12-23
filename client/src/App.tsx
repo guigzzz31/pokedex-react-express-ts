@@ -1,16 +1,17 @@
-import React, { useReducer, useState, useEffect } from 'react';
-import { Box, Button, Grid, Input } from '@material-ui/core';
+import React, { useReducer } from 'react';
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
-
-// import CircularProgress from '@material-ui/core/CircularProgress';
-import PokemonGenerator from './components/generators/PokemonGenerator';
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+// import CircularProgress from '@material-ui/core/CircularProgress';
 
 import appReducer from './appReducer';
-import useFetchPokemons from './hooks/useFetchPokemons';
-import PokemonProps from './types/Pokemon';
-import { TextField } from '@material-ui/core';
+
 import SearchNav from './components/SearchNav/SearchNav';
+import PokemonGenerator from './components/generators/PokemonGenerator';
+
+import useFetchPokemons from './hooks/useFetchPokemons';
 
 const initialState = {
   showAddForm: false,
@@ -19,9 +20,7 @@ const initialState = {
   pokemons: [],
 };
 
-
 export default function App(): JSX.Element {
-
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [searchName, setSearchName] = React.useState("");
   const [searchType, setSearchType] = React.useState("");
@@ -39,22 +38,8 @@ export default function App(): JSX.Element {
     setSearchType(event.target.value);
   };
 
-  // const handleChangeType = (event: any, options: any) => {
-  //   // const { options } = event.target.value;
-  //   console.log("options", options.selected)
-  //   const value: string[] | any = [];
-  //   for (let i = 0, l = options.length; i < l; i += 1) {
-  //     if (options[i].selected) {
-  //       value.push(options[i].value);
-  //     }
-  //   }
-  //   console.log("value", value)
-  //   setSearchType(value);
-  // };
-
   const { pokemons, isLoading } = state;
   useFetchPokemons(dispatch);
-
 
   function filterArray(array: [], filters: any) {
     const filterKeys = Object.keys(filters);
@@ -72,13 +57,8 @@ export default function App(): JSX.Element {
     type: searchType ? (type: string) => type.includes(searchType) : '',
   }
 
-  const resultv1 = filterArray(pokemons, filters);
-
-  console.log("filert", filters)
-
-
+  const result = filterArray(pokemons, filters);
   const classes: PropsClasses = useStyles({} as StyleProps);
-
   return (
     <Box bgcolor='primary'>
       <Grid direction="column" alignItems="center" justify="center" spacing={5} container>
@@ -94,7 +74,7 @@ export default function App(): JSX.Element {
           <SearchNav searchName={searchName} handleChange={handleChange} searchNumber={searchNumber} handleChangeNumber={handleChangeNumber} searchType={searchType} handleChangeType={handleChangeType} />
         </Grid>
         <Grid item>
-          <PokemonGenerator {...resultv1} />
+          <PokemonGenerator {...result} />
         </Grid>
       </Grid>
     </Box>
