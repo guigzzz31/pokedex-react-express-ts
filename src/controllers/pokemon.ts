@@ -24,9 +24,10 @@ export default {
   },
   
   like: async (req: Request, res: Response) => {
-    const id = req.params._id;
-    const result = await PokemonModel.findOneAndUpdate({ _id: id }, req.body, {
+    const id = req.params.id;
+    const result = await PokemonModel.findOneAndUpdate({ id: id }, req.body, {
       new: true,
+      useFindAndModify: true,
     });
     res.status(200).json(result);
   },

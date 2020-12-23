@@ -5,7 +5,7 @@ const app = express();
 
 //Database
 mongoose
-  .connect("mongodb://127.0.0.1:27017/pokedex", {
+  .connect("mongodb://127.0.0.1:27017/pokedexV1", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

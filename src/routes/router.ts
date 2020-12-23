@@ -9,7 +9,7 @@ router.post("/api/insert/pokemons", catchErrorHandler(PokemonController.createAl
 router.get("/api/pokemons", catchErrorHandler(PokemonController.getAllPokemon));
 router.get("/api/pokemon/:id", catchErrorHandler(PokemonController.getPokemonByID));
 router.get("/api/pokemon/:name", catchErrorHandler(PokemonController.getPokemonByName));
-router.put("/api/pokemons/:_id", catchErrorHandler(PokemonController.like));
+router.put("/api/pokemons/:id", catchErrorHandler(PokemonController.like));
 router.delete("/api/delete/pokemon/:_id", catchErrorHandler(PokemonController.delete));
 
 export default router;
