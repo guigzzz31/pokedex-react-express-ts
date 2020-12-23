@@ -14,7 +14,7 @@ import ParseColorType from "../../hooks/ParseColorType";
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 
 import SearchProps from '../../types/Search';
-import { types } from './types'
+import { types } from './types';
 
 
 export default function SearchNav({ searchName, handleChange, searchNumber, handleChangeNumber, searchType, handleChangeType }: SearchProps): JSX.Element {
@@ -36,6 +36,7 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
         </Grid>
         <Grid item>
           <TextField
+            className={classes.textFieldNumber}
             type="number"
             variant="outlined"
             label="number"
@@ -47,7 +48,7 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
 
         </Grid>
         <Grid item>
-          <FormControl variant="outlined" size="small">
+          <FormControl className={classes.textFieldNumber} variant="outlined" size="small">
             <InputLabel color="secondary">type</InputLabel>
             <Select
               value={searchType}
@@ -84,6 +85,7 @@ interface StyleProps {
   menuFieldType: BaseCSSProperties,
   typeBox: BaseCSSProperties,
   typeBoxInput: BaseCSSProperties,
+  textFieldNumber: BaseCSSProperties
 }
 
 type PropsClasses = Record<keyof StyleProps, string>
@@ -91,6 +93,10 @@ type PropsClasses = Record<keyof StyleProps, string>
 let baseStyle: StyleProps = {
   textFieldName: {
     minWidth: 350,
+    backgroundColor: "#FFFFFF"
+  },
+  textFieldNumber: {
+    backgroundColor: "#FFFFFF"
   },
   menuFieldType: {
     minWidth: 120,

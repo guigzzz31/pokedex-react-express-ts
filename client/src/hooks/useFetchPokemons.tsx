@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import axios from "axios";
-import PokemonProps from "../types/Pokemon";
 
 const useFetchPokemons = (dispatch: any) => {
   useEffect(() => {
