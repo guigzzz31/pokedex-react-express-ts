@@ -26,24 +26,3 @@ export default function PokemonGenerator(pokemons: Pokemons) {
     </Container>
   );
 }
-
-//style
-// interface StyleProps {
-//   typeBox: BaseCSSProperties,
-//   typeText: BaseCSSProperties,
-// }
-
-// type PropsClasses = Record<keyof StyleProps, string>
-
-// let baseStyle: StyleProps = {
-//   typeText: {
-//     color: "#FFF",
-//     fontWeight: 900,
-//     fontSize: 9,
-//   },
-//   typeBox: {
-//     borderRadius: 9,
-//     width: 77,
-//   }
-// }
-// const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);

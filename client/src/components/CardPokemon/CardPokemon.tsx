@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 import Grid from "@material-ui/core/Grid";
@@ -13,22 +13,6 @@ import axios from "axios";
 import InfoPokemon from "./InfoPokemon";
 
 import PokemonProps from '../../types/Pokemon';
-import useFetchPokemons from "../../hooks/useFetchPokemons";
-
-const UseLikePokemon = (id: string) => {
-  useEffect(() => {
-    const likePokemon = async () => {
-      try {
-        const changeLike = await axios.put(`/api/pokemons/${id}`);
-        console.log("changeLike", changeLike)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    likePokemon();
-  }, [id]);
-};
 
 export default function CardPokemon({ id, name, img, type, like }: PokemonProps): JSX.Element {
 
@@ -36,9 +20,7 @@ export default function CardPokemon({ id, name, img, type, like }: PokemonProps)
   const [isToggled, setToggled] = useState(like);
 
   function toggleTrueFalse(id: string) {
-    console.log('isToggled', isToggled)
     setToggled(!isToggled);
-    console.log('isToggled', isToggled)
     const likePokemon = async () => {
       try {
 
@@ -46,7 +28,6 @@ export default function CardPokemon({ id, name, img, type, like }: PokemonProps)
           "like": !isToggled
         }
         const result = await axios.put(`/api/pokemons/${id}`, data);
-        console.log(result)
       } catch (error) {
         console.log(error);
       }

@@ -1,68 +1,73 @@
-import React, { useReducer } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React from 'react';
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
+type HeaderProps = {
+  handlePage: any,
+  pageSelected: string
+}
 
-
-
-
-export default function Header(): JSX.Element {
+export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.Element {
+  const classes: PropsClasses = useStyles({} as StyleProps);
   return (
-    <Grid direction="row" alignItems="center" justify="center" spacing={5} container>
-      <Grid item>
-        <Link to="/">
-          Pokedex
-      </Link>
-      </Grid>
-      {/* <Grid item>
-        <Box>
-          <Typography>
-            POKEDEX
+    <Box p={6}>
+      <Grid direction="row" alignItems="center" justify="center" spacing={5} container>
+        <Grid item>
+          <Button href="/" onClick={() => handlePage} value="pokedex">
+            <Box boxShadow={1} className={classes.button}>
+              <Typography className={classes.buttonText}>
+                POKEDEX
           </Typography>
-        </Box>
-      </Grid> */}
-      <Grid item>
-        <Link to="/api/pokemons/liked">
-          Liked
-      </Link>
+            </Box>
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button href="/api/pokemons/liked" onClick={() => handlePage} value="pokedex">
+            <Box boxShadow={1} className={classes.button}>
+              <Typography className={classes.buttonText}>
+                LIKED
+          </Typography>
+            </Box>
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   )
 };
 
 //style
 interface StyleProps {
-  textField: BaseCSSProperties,
-  likeButton: BaseCSSProperties,
-  likeIcon: BaseCSSProperties,
+  button: BaseCSSProperties,
+  buttonText: BaseCSSProperties,
+  container: BaseCSSProperties,
   info: BaseCSSProperties
 }
 
 type PropsClasses = Record<keyof StyleProps, string>
 
 let baseStyle: StyleProps = {
-  textField: {
-    backgroundColor: "#FFF",
+  button: {
+    display: "flex",
+    justifyContent: "center",
     borderWidth: 1,
     borderRadius: 18,
+    backgroundColor: "#FFFFFF",
+    width: 200,
   },
-  likeIcon: {
-    color: "#E4E4E4",
+  container: {
+    backgroundColor: "#E5E5E5",
   },
-  likeButton: {
-    borderWidth: 2,
-    borderRadius: 90,
-    borderColor: "#E4E4E4"
+  buttonText: {
+    color: "#000",
+    fontWeight: 800,
+    letterSpacing: 3,
+    textDecoration: "none",
+    fontSize: 12,
+    padding: 5,
   },
   info: {
     paddingTop: 23,
