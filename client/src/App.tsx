@@ -1,11 +1,16 @@
 import React, { useReducer, useState, useEffect } from 'react';
-import { Box, Input } from '@material-ui/core';
+import { Box, Button, Grid, Input } from '@material-ui/core';
+import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
+
 // import CircularProgress from '@material-ui/core/CircularProgress';
 import PokemonGenerator from './components/generators/PokemonGenerator';
+import { Theme, makeStyles } from "@material-ui/core/styles";
 
 import appReducer from './appReducer';
 import useFetchPokemons from './hooks/useFetchPokemons';
 import PokemonProps from './types/Pokemon';
+import { TextField } from '@material-ui/core';
+import SearchNav from './components/SearchNav/SearchNav';
 
 const initialState = {
   showAddForm: false,
@@ -49,29 +54,58 @@ export default function App(): JSX.Element {
   // .filter((pokemon: PokemonProps) =>
   //   pokemon.type.includes(searchType.toLocaleLowerCase())
   // )
+  const classes: PropsClasses = useStyles({} as StyleProps);
+
   return (
     <Box bgcolor='primary'>
-      <input
-        type="text"
-        placeholder="name"
-        value={searchName}
-        onChange={handleChange}
-      />
-      <Input
-        type="number"
-        placeholder="number"
-        value={searchNumber}
-        onChange={handleChangeNumber}
-      />
-      <Input
-        type="text"
-        placeholder="type"
-        value={searchType}
-        onChange={handleChangeType}
-      />
+      <Grid direction="column" alignItems="center" justify="center" spacing={5} container>
+        <Grid item>
+          <Button>
+            POKEDEX
+          </Button>
+          <Button>
+            LIKED
+          </Button>
+        </Grid>
+        <Grid item>
+          <SearchNav searchName={searchName} handleChange={handleChange} searchNumber={searchNumber} handleChangeNumber={handleChangeNumber} />
+        </Grid>
+        <Grid item>
+          <PokemonGenerator {...results} />
+        </Grid>
+      </Grid>
+
       {/* <PokemonGenerator {...pokemons} /> */}
-      <PokemonGenerator {...results} />
     </Box>
   )
 };
 
+//style
+interface StyleProps {
+  textField: BaseCSSProperties,
+  likeButton: BaseCSSProperties,
+  likeIcon: BaseCSSProperties,
+  info: BaseCSSProperties
+}
+
+type PropsClasses = Record<keyof StyleProps, string>
+
+let baseStyle: StyleProps = {
+  textField: {
+    backgroundColor: "#FFF",
+    borderWidth: 1,
+    borderRadius: 18,
+  },
+  likeIcon: {
+    color: "#E4E4E4",
+  },
+  likeButton: {
+    borderWidth: 2,
+    borderRadius: 90,
+    borderColor: "#E4E4E4"
+  },
+  info: {
+    paddingTop: 23,
+  }
+}
+const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
