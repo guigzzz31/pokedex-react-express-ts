@@ -43,9 +43,8 @@ export default {
     res.status(200).json({ success: true, result });
   },
 
-  getPokemonByName: async (req: Request, res: Response) => {
-    const name = req.params.name;
-    const result = await PokemonModel.find({ name: name });
+  getPokemonLiked: async (req: Request, res: Response) => {
+    const result = await PokemonModel.find({ like: true });
     res.status(200).json({ success: true, result });
   },
 };

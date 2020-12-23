@@ -2,18 +2,16 @@ import { useEffect } from "react";
 import axios from "axios";
 import PokemonProps from "../types/Pokemon";
 
-const useFetchPokemons = (dispatch: any) => {
+const useFetchPokemonsLiked = (dispatch: any) => {
   useEffect(() => {
     const fetchPokemons = async () => {
-      dispatch({
-        type: "START_LOADING",
-        isLoading: true
-      })
       try {
-        const result = await axios("/api/pokemons");
+        const result = await axios("/api/pokemons/liked");
+        console.log("result", result.data.result)
         dispatch({
-          type: "POKEMONS_FETCH_SUCCESS",
-          pokemons: result.data.result,
+          type: "POKEMONS_LIKED_FETCH_SUCCESS",
+          likedPokemons: result.data.result,
+          isLoading: false
         });
       } catch (error) {
         console.log(error);
@@ -23,4 +21,4 @@ const useFetchPokemons = (dispatch: any) => {
   }, [dispatch]);
 };
 
-export default useFetchPokemons;
+export default useFetchPokemonsLiked;

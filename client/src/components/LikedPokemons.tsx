@@ -1,40 +1,36 @@
 import React, { useReducer } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-// import Link from '@material-ui/core/Link';
-import Pokedex from './components/Pokedex';
-import likedPokemons from './components/LikedPokemons';
 
+import appReducer from '../appReducer';
+import PokemonGenerator from './generators/PokemonGenerator';
 
-export default function App(): JSX.Element {
+import useFetchPokemonsLiked from '../hooks/useFetchPokemonsLiked';
+
+const initialState = {
+  showAddForm: false,
+  successMessage: "",
+  likedPokemons: [],
+};
+
+export default function LikedPokemons(): JSX.Element {
+  const [state, dispatch] = useReducer(appReducer, initialState);
+  useFetchPokemonsLiked(dispatch);
+  const { likedPokemons } = state;
+  console.log("likedPokemons", likedPokemons)
+  const classes: PropsClasses = useStyles({} as StyleProps);
   return (
-    <Router>
-      <Grid direction="row" alignItems="center" justify="center" spacing={5} container>
+    <Box bgcolor='primary'>
+      <Grid direction="column" alignItems="center" justify="center" spacing={5} container>
         <Grid item>
-          <Link to="/">
-            Pokedex
-      </Link>
         </Grid>
         <Grid item>
-          <Link to="/api/pokemons/liked">
-            Liked
-      </Link>
+          <PokemonGenerator {...likedPokemons} />
         </Grid>
       </Grid>
-      <Switch>
-        <Route exact path="/" component={Pokedex} />
-        <Route exact path="/api/pokemons/liked" component={likedPokemons} />
-      </Switch>
-    </Router>
+    </Box>
   )
 };
 
