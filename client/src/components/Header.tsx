@@ -10,31 +10,33 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-// import Link from '@material-ui/core/Link';
-import Pokedex from './components/Pokedex';
-import likedPokemons from './components/LikedPokemons';
+import { Typography } from '@material-ui/core';
 
 
-export default function App(): JSX.Element {
+
+
+
+export default function Header(): JSX.Element {
   return (
-    <Router>
-      <Grid direction="row" alignItems="center" justify="center" spacing={5} container>
-        <Grid item>
-          <Link to="/">
-            Pokedex
+    <Grid direction="row" alignItems="center" justify="center" spacing={5} container>
+      <Grid item>
+        <Link to="/">
+          Pokedex
       </Link>
-        </Grid>
-        <Grid item>
-          <Link to="/api/pokemons/liked">
-            Liked
-      </Link>
-        </Grid>
       </Grid>
-      <Switch>
-        <Route exact path="/" component={Pokedex} />
-        <Route exact path="/api/pokemons/liked" component={likedPokemons} />
-      </Switch>
-    </Router>
+      {/* <Grid item>
+        <Box>
+          <Typography>
+            POKEDEX
+          </Typography>
+        </Box>
+      </Grid> */}
+      <Grid item>
+        <Link to="/api/pokemons/liked">
+          Liked
+      </Link>
+      </Grid>
+    </Grid>
   )
 };
 

@@ -61,7 +61,7 @@ export default function CardPokemon({ id, name, img, type, like }: PokemonProps)
       <Grid justify="flex-end" container>
         <Button onClick={() => toggleTrueFalse(id)} id={id} className={classes.likeButton}>
           {
-            like ? <ThumbUpIcon className={classes.likeIcon} /> : <ThumbUpOutlinedIcon className={classes.likeIcon} />
+            isToggled ? <ThumbUpIcon className={classes.likeIcon} /> : <ThumbUpOutlinedIcon className={classes.likeIcon} />
           }
         </Button>
       </Grid>
