@@ -5,6 +5,7 @@ import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 import ParseColorType from "../../hooks/ParseColorType";
+import ParseColorDamage from "../../hooks/ParseColorDamage";
 
 type TypeProps = { type: string[] };
 

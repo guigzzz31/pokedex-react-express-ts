@@ -14,11 +14,10 @@ import InfoPokemon from "./InfoPokemon";
 
 import PokemonProps from '../../types/Pokemon';
 
-export default function CardPokemon({ id, name, img, type, like }: PokemonProps): JSX.Element {
-
+export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
+  const { id, like } = pokemon;
   const classes: PropsClasses = useStyles({} as StyleProps);
   const [isToggled, setToggled] = useState(like);
-
   function toggleTrueFalse(id: string) {
     setToggled(!isToggled);
     const likePokemon = async () => {
@@ -37,7 +36,7 @@ export default function CardPokemon({ id, name, img, type, like }: PokemonProps)
   return (
     <Box className={classes.container} boxShadow={3}>
       <Box className={classes.info}>
-        <InfoPokemon id={id} name={name} img={img} type={type} />
+        <InfoPokemon {...pokemon} />
       </Box>
       <Grid justify="flex-end" container>
         <Button onClick={() => toggleTrueFalse(id)} id={id} className={classes.likeButton}>

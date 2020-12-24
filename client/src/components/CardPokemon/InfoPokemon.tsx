@@ -1,3 +1,4 @@
+import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -6,11 +7,22 @@ import PokemonAvatar from "../helpers/PokemonAvatar";
 import PokemonNumber from "../helpers/PokemonNumber";
 import PokemonName from "../helpers/PokemonName";
 import TypeGenerator from "../generators/TypeGenerator";
+import ModalPokemon from '../ModalPokemon/ModalPokemon';
 
+import PokemonProps from '../../types/Pokemon';
 
-type CardPokemonProps = { id: string, name: string, img: string, type: string[] };
+export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
+  const { img, id, name, type } = pokemon;
+  const [open, setOpen] = React.useState(false);
 
-export default function InfoPokemon({ id, name, img, type }: CardPokemonProps): JSX.Element {
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Box>
       <Grid
@@ -20,7 +32,7 @@ export default function InfoPokemon({ id, name, img, type }: CardPokemonProps): 
         container
       >
         <Grid item>
-          <Button>
+          <Button onClick={handleOpen}>
             <PokemonAvatar img={img} />
           </Button>
         </Grid>
@@ -40,6 +52,7 @@ export default function InfoPokemon({ id, name, img, type }: CardPokemonProps): 
           </Box>
         </Grid>
       </Grid>
+      <ModalPokemon open={open} handleClose={handleClose} {...pokemon} />
     </Box>
   );
 }
