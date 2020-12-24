@@ -1,22 +1,9 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-
-import PokemonAvatar from "../helpers/PokemonAvatar";
-import PokemonNumber from "../helpers/PokemonNumber";
-import PokemonName from "../helpers/PokemonName";
-import TypeGenerator from "../generators/TypeGenerator";
-
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 import ModalContent from './ModalContent';
-import PokemonProps from '../../types/Pokemon';
-
-
-type PokemonModalProps = { open: any, handleClose: any, pokemon: PokemonProps };
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
 interface FadeProps {
   children?: React.ReactElement;
   in: boolean;

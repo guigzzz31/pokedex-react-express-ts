@@ -14,6 +14,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 import PokemonProps from '../../types/Pokemon';
 import DamageGenerator from '../generators/DamageGenerator';
+import GraphGenerator from '../generators/GraphGenerator';
 
 type DamageProps = {
   damages: {
@@ -34,11 +35,12 @@ type DamageProps = {
     dragon: string,
     dark: string,
     steel: string,
+    stats: object,
   },
 };
 
 
-type ModalContentProps = { id: string, name: string, img: string, type: string[], damages: DamageProps, misc: Object, like: Boolean };
+type ModalContentProps = { id: string, name: string, img: string, type: string[], damages: DamageProps, misc: object, stats: object, like: Boolean };
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-export default function ModalContent({ id, name, img, type, damages }: ModalContentProps): JSX.Element {
+export default function ModalContent({ id, name, img, type, damages, stats }: ModalContentProps): JSX.Element {
   const classes = useStyles();
   return (
     <Box>
@@ -85,6 +87,9 @@ export default function ModalContent({ id, name, img, type, damages }: ModalCont
             </Box>
             <TypeGenerator type={type} />
           </Box>
+        </Grid>
+        <Grid item>
+          <GraphGenerator stats={stats} />
         </Grid>
         <Grid item >
           <DamageGenerator damages={damages} />
