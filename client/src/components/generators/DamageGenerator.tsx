@@ -4,32 +4,8 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
-import ParseColorType from "../../hooks/ParseColorType";
 import ParseColorDamage from "../../hooks/ParseColorDamage";
 import ParseColorDamageValue from "../helpers/ParseColorDamageValue";
-
-type DamageProps = {
-  damages: {
-    normal: string,
-    fire: string,
-    water: string,
-    electric: string,
-    grass: string,
-    ice: string,
-    fight: string,
-    poison: string,
-    ground: string,
-    flying: string,
-    psychic: string,
-    bug: string,
-    rock: string,
-    ghost: string,
-    dragon: string,
-    dark: string,
-    steel: string,
-  },
-};
-
 
 export default function DamageGenerator(damages: any) {
   const classes: PropsClasses = useStyles({} as StyleProps);

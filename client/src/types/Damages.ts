@@ -1,0 +1,22 @@
+export type DamageProps = {
+  damages: {
+    normal: string,
+    fire: string,
+    water: string,
+    electric: string,
+    grass: string,
+    ice: string,
+    fight: string,
+    poison: string,
+    ground: string,
+    flying: string,
+    psychic: string,
+    bug: string,
+    rock: string,
+    ghost: string,
+    dragon: string,
+    dark: string,
+    steel: string,
+    stats: object,
+  },
+};
