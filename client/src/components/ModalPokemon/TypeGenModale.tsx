@@ -6,13 +6,12 @@ import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 import ParseColorType from "../../hooks/ParseColorType";
 
-
 type TypeProps = { type: string[] };
 
-export default function TypeGenerator({ type }: TypeProps) {
+export default function TypeGenModale({ type }: TypeProps) {
   const classes: PropsClasses = useStyles({} as StyleProps);
   return (
-    <Grid direction="column" spacing={1} container>
+    <Grid direction="row" spacing={1} container>
       {type
         ? type.map((item: string) => {
           return (
@@ -40,11 +39,11 @@ let baseStyle: StyleProps = {
   typeText: {
     color: "#FFF",
     fontWeight: 900,
-    fontSize: 9,
+    fontSize: 16,
   },
   typeBox: {
     borderRadius: 9,
-    width: 77,
+    width: 120,
   }
 }
 const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
