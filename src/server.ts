@@ -29,10 +29,10 @@ mongoose.connect(connection,{ useNewUrlParser: true, useUnifiedTopology: true, u
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.static(path.join(__dirname, 'client/public')))
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+  res.sendFile(path.join(__dirname + '/client/build/public/index.html'))
 })
 
 //routes
