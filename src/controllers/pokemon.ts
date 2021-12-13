@@ -27,7 +27,7 @@ export default {
     const id = req.params.id;
     const result = await PokemonModel.findOneAndUpdate({ id: id }, req.body, {
       new: true,
-      useFindAndModify: true,
+      useFindAndModify: false,
     });
     res.status(200).json(result);
   },
