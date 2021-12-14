@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "pokedex-react-express-ts",
   "version": "2.0.0",
   "description": "React TypeScript Material-UI boilerplate by Welcome, Developer.",
   "dependencies": {
