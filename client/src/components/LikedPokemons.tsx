@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import { Box } from "@mui/material";
 
 import appReducer from '../appReducer';
 import PokemonGenerator from './generators/PokemonGenerator';
@@ -18,13 +17,7 @@ export default function LikedPokemons(): JSX.Element {
   const { likedPokemons } = state;
   return (
     <Box bgcolor='primary'>
-      <Grid direction="column" alignItems="center" justify="center" spacing={5} container>
-        <Grid item>
-        </Grid>
-        <Grid item>
-          <PokemonGenerator {...likedPokemons} />
-        </Grid>
-      </Grid>
+      <PokemonGenerator {...likedPokemons} />
     </Box>
   )
 };

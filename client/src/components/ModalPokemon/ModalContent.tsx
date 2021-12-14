@@ -1,7 +1,8 @@
-import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  Box,
+  Grid,
+} from "@mui/material";
+
 
 import DamageGenerator from '../generators/DamageGenerator';
 import GraphGenerator from '../generators/GraphGenerator';
@@ -17,30 +18,17 @@ import { Misc } from '../../types/Misc';
 
 type ModalContentProps = { id: string, name: string, img: string, type: string[], damages: DamageProps, misc: Misc, stats: object, like: Boolean };
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(2, 4, 3),
-    },
-  }),
-);
-
 export default function ModalContent({ id, name, img, type, damages, stats, misc }: ModalContentProps): JSX.Element {
-  const classes = useStyles();
   return (
     <Box maxWidth={1600}>
-      <Grid
-        justify="space-evenly"
-        alignItems="center"
-        spacing={3}
-        className={classes.paper}
-        container
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          margin: 2,
+          padding: [2, 3, 4]
+        }}
       >
         <Grid item>
           <PokemonAvatarModale img={img} />
@@ -71,7 +59,7 @@ export default function ModalContent({ id, name, img, type, damages, stats, misc
         <Grid item >
           <DamageGenerator damages={damages} />
         </Grid>
-      </Grid>
+      </Box>
     </Box>
   );
 }

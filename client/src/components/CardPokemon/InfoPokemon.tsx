@@ -1,7 +1,10 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
+
+import {
+  Box,
+  Button,
+  Grid
+} from "@mui/material";
 
 import PokemonAvatar from "../helpers/PokemonAvatar";
 import PokemonNumber from "../helpers/PokemonNumber";
@@ -25,33 +28,35 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
 
   return (
     <Box>
-      <Grid
-        justify="center"
-        alignItems="center"
-        spacing={1}
-        container
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 1,
+        }}
       >
-        <Grid item>
+        <Box>
           <Button onClick={handleOpen}>
             <PokemonAvatar img={img} />
           </Button>
-        </Grid>
-        <Grid item>
+        </Box>
+        <Box>
           <Box p={1}>
             <Box mb={1}>
-              <Grid spacing={1} container>
-                <Grid item>
+              <Box p={1}>
+                <Box>
                   <PokemonNumber id={id} />
-                </Grid>
-                <Grid item>
+                </Box>
+                <Box>
                   <PokemonName name={name} />
-                </Grid>
-              </Grid>
+                </Box>
+              </Box>
             </Box>
             <TypeGenerator type={type} />
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
       <ModalPokemon open={open} handleClose={handleClose} {...pokemon} />
     </Box>
   );

@@ -1,14 +1,43 @@
 import React from "react";
-import { Box, Grid, Typography } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
+
+import { Box, Grid, Typography } from "@mui/material";
+import { createStyles, makeStyles, withStyles } from '@mui/styles';
+import { createTheme, Theme } from "@mui/material/styles";
 
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 import ParseColorDamage from "../../hooks/ParseColorDamage";
 import ParseColorDamageValue from "../helpers/ParseColorDamageValue";
 
-export default function DamageGenerator(damages: any) {
-  const classes: PropsClasses = useStyles({} as StyleProps);
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      //padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+    typeBox: {
+      borderRadius: 9,
+      border: 1,
+      borderWidth: 2,
+      borderColor: "#000",
+      width: 80,
+    },
+    typeText: {
+      color: "#FFF",
+      fontWeight: 900,
+      fontSize: 16,
+    },
+    typeValue: {
+      color: "#FFF",
+      fontWeight: 800,
+      fontSize: 16,
+    }
+  });
+//withStyles(styles);
+
+const DamageGenerator = (damages: any) => {
   const keys = Object.keys(damages.damages);
   const values = Object.values(damages.damages);
   return (
@@ -18,8 +47,28 @@ export default function DamageGenerator(damages: any) {
           ? keys.map((key: string) => {
             return (
               <Grid key={key} item>
-                <Box key={key} className={classes.typeBox} bgcolor={ParseColorDamage(key)}>
-                  <Typography align="center" className={classes.typeText} key={key}>{CustomToUpperCase(key)}</Typography>
+                <Box
+                  key={key}
+                  sx={{
+                    borderRadius: 9,
+                    border: 1,
+                    borderWidth: 2,
+                    borderColor: "#000",
+                    width: 80,
+                    bgcolor: ParseColorDamage(key)
+                  }}
+                >
+                  <Typography
+                    key={key}
+                    sx={{
+                      color: "#FFF",
+                      fontWeight: 900,
+                      fontSize: 16,
+                    }}
+                    align="center"
+                  >
+                    {CustomToUpperCase(key)}
+                  </Typography>
                 </Box>
               </Grid>
             );
@@ -31,8 +80,28 @@ export default function DamageGenerator(damages: any) {
           ? values.map((value: any) => {
             return (
               <Grid key={value} item>
-                <Box key={value} className={classes.typeBox} style={{ borderColor: ParseColorDamageValue(value) }}>
-                  <Typography align="center" style={{ color: ParseColorDamageValue(value) }} className={classes.typeValue} key={value}>{CustomToUpperCase(value)}</Typography>
+                <Box
+                  key={value}
+                  sx={{
+                    borderRadius: 9,
+                    border: 1,
+                    borderWidth: 2,
+                    borderColor: ParseColorDamageValue(value),
+                    width: 80,
+                  }}
+                >
+                  <Typography
+                    key={value}
+                    align="center"
+                    style={{ color: ParseColorDamageValue(value) }}
+                    sx={{
+                      color: "#FFF",
+                      fontWeight: 800,
+                      fontSize: 16,
+                    }}
+                  >
+                    {CustomToUpperCase(value)}
+                  </Typography>
                 </Box>
               </Grid>
             );
@@ -43,32 +112,4 @@ export default function DamageGenerator(damages: any) {
   );
 }
 
-//style
-interface StyleProps {
-  typeBox: BaseCSSProperties,
-  typeText: BaseCSSProperties,
-  typeValue: BaseCSSProperties,
-}
-
-type PropsClasses = Record<keyof StyleProps, string>
-
-let baseStyle: StyleProps = {
-  typeBox: {
-    borderRadius: 9,
-    border: 1,
-    borderWidth: 2,
-    borderColor: "#000",
-    width: 80,
-  },
-  typeText: {
-    color: "#FFF",
-    fontWeight: 900,
-    fontSize: 16,
-  },
-  typeValue: {
-    color: "#FFF",
-    fontWeight: 800,
-    fontSize: 16,
-  }
-}
-const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);
+export default DamageGenerator

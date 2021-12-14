@@ -1,6 +1,5 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
+import { Box, Grid } from "@mui/material";
 
 import CardPokemon from "../CardPokemon/CardPokemon";
 
@@ -11,18 +10,18 @@ type Pokemons = PokemonProps[];
 export default function PokemonGenerator(pokemons: Pokemons) {
   let arr: Pokemons = Object.values(pokemons)
   return (
-    <Container maxWidth="lg">
-      <Grid container direction="row" justify="center" spacing={5}>
+    <Box maxWidth="lg">
+      <Box>
         {arr
           ? arr.map((pokemon: PokemonProps) => {
             return (
-              <Grid key={pokemon.id} item>
+              <Box key={pokemon.id}>
                 <CardPokemon key={pokemon.id} {...pokemon} />
-              </Grid>
+              </Box>
             );
           })
           : null}
-      </Grid>
-    </Container>
+      </Box>
+    </Box>
   );
 }

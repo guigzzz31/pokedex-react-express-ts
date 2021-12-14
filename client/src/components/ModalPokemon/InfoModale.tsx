@@ -1,35 +1,50 @@
-import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-import { BaseCSSProperties } from '@material-ui/core/styles/withStyles';
-import Typography from "@material-ui/core/Typography";
+import {
+  Box,
+  Grid,
+  Typography,
+} from "@mui/material";
 
 
 export default function InfoModale({ misc }: any): JSX.Element {
-  const classes: PropsClasses = useStyles({} as StyleProps);
-
   return (
     <Box m={1} mt={3}>
       <Grid direction="column" spacing={3} container>
         <Grid item>
           <Grid spacing={2} container>
             <Grid item>
-              <Typography className={classes.titleText}>Abilities </Typography>
+              <Typography
+                sx={{
+                  color: "#000",
+                  fontWeight: 900,
+                  fontSize: 18,
+                }}
+              >
+                Abilities
+              </Typography>
             </Grid>
             {misc.abilities.normal.map((item: any) => {
-              return (<Grid key={item} item>
-                <Typography style={{ paddingTop: 2 }}>{item},</Typography>
-              </Grid>)
+              return (
+                <Grid key={item} item>
+                  <Typography sx={{ paddingTop: 2 }}>{item},</Typography>
+                </Grid>
+              )
             })}
           </Grid>
           <Grid spacing={2} container>
             <Grid item>
-              <Typography align="center" className={classes.titleText}>Hidden </Typography>
+              <Typography
+                align="center"
+                sx={{
+                  color: "#000",
+                  fontWeight: 900,
+                  fontSize: 18,
+                }}
+              >
+                Hidden </Typography>
             </Grid>
             {misc.abilities.hidden.map((item: any) => {
               return (<Grid key={item} item>
-                <Typography style={{ paddingTop: 2 }}>{item},</Typography>
+                <Typography sx={{ paddingTop: 2 }}>{item},</Typography>
               </Grid>)
             })}
           </Grid>
@@ -41,7 +56,15 @@ export default function InfoModale({ misc }: any): JSX.Element {
               <Box>
                 <Grid spacing={2} container>
                   <Grid item>
-                    <Typography className={classes.titleText}>female</Typography>
+                    <Typography
+                      sx={{
+                        color: "#000",
+                        fontWeight: 900,
+                        fontSize: 18,
+                      }}
+                    >
+                      female
+                    </Typography>
                   </Grid>
                   <Grid item>
                     <Typography>{misc.sex.female} %</Typography>
@@ -49,7 +72,15 @@ export default function InfoModale({ misc }: any): JSX.Element {
                 </Grid>
                 <Grid spacing={2} container>
                   <Grid item>
-                    <Typography className={classes.titleText}>male</Typography>
+                    <Typography
+                      sx={{
+                        color: "#000",
+                        fontWeight: 900,
+                        fontSize: 18,
+                      }}
+                    >
+                      male
+                    </Typography>
                   </Grid>
                   <Grid item>
                     <Typography>{misc.sex.male} %</Typography>
@@ -61,7 +92,15 @@ export default function InfoModale({ misc }: any): JSX.Element {
               <Box>
                 <Grid spacing={2} container>
                   <Grid item>
-                    <Typography className={classes.titleText}>height</Typography>
+                    <Typography
+                      sx={{
+                        color: "#000",
+                        fontWeight: 900,
+                        fontSize: 18,
+                      }}
+                    >
+                      height
+                    </Typography>
                   </Grid>
                   <Grid item>
                     <Typography>{misc.height}</Typography>
@@ -69,7 +108,15 @@ export default function InfoModale({ misc }: any): JSX.Element {
                 </Grid>
                 <Grid spacing={2} container>
                   <Grid item>
-                    <Typography className={classes.titleText}>weight</Typography>
+                    <Typography
+                      sx={{
+                        color: "#000",
+                        fontWeight: 900,
+                        fontSize: 18,
+                      }}
+                    >
+                      weight
+                    </Typography>
                   </Grid>
                   <Grid item>
                     <Typography>{misc.weight}</Typography>
@@ -83,25 +130,3 @@ export default function InfoModale({ misc }: any): JSX.Element {
     </Box>
   )
 }
-
-//style
-interface StyleProps {
-  titleText: BaseCSSProperties,
-  valueText: BaseCSSProperties
-}
-
-type PropsClasses = Record<keyof StyleProps, string>
-
-let baseStyle: StyleProps = {
-  titleText: {
-    color: "#000",
-    fontWeight: 900,
-    fontSize: 18,
-  },
-  valueText: {
-    color: "#000",
-    fontWeight: 600,
-    fontSize: 18,
-  }
-}
-const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);

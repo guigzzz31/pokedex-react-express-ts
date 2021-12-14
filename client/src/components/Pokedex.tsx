@@ -1,8 +1,5 @@
 import React, { useReducer } from 'react';
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { Box, Grid, CircularProgress } from "@mui/material";
 
 import appReducer from '../appReducer';
 
@@ -58,14 +55,14 @@ export default function Pokedex(): JSX.Element {
   const result = filterPokemons(pokemons, filters);
   return (
     <Box bgcolor='primary'>
-      <Grid direction="column" alignItems="center" justify="center" spacing={5} container>
-        <Grid item>
+      <Box>
+        <Box>
           <SearchNav searchName={searchName} handleChange={handleChange} searchNumber={searchNumber} handleChangeNumber={handleChangeNumber} searchType={searchType} handleChangeType={handleChangeType} />
-        </Grid>
-        <Grid item>
+        </Box>
+        <Box>
           {isLoading ? <CircularProgress /> : <PokemonGenerator {...result} />}
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Box>
   )
 };
