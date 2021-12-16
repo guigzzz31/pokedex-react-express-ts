@@ -12,8 +12,27 @@ const axios = require('axios');
 import InfoPokemon from "./InfoPokemon";
 
 import PokemonProps from '../../types/Pokemon';
+import { makeStyles } from "@mui/styles";
+import { ThemeCustom } from "../../theme";
+
+const useStyles = makeStyles((theme: ThemeCustom) => ({
+  container: {
+    display: "flex",
+    // flexDirection: "column",
+    // width: "100%",
+    justifyContent: "center",
+    backgroundColor: theme.palette.primary.light,
+    borderWidth: 1,
+    borderRadius: 30,
+    boxShadow: "20px 20px 60px #bd394e, -20px -20px 60px #ff4d6a",
+    margin: "24px",
+    padding: "12px",
+  },
+}));
+
 
 export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
+  const classes = useStyles();
   const { id, like } = pokemon;
 
   const [isToggled, setToggled] = useState(like);
@@ -37,29 +56,29 @@ export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
 
   return (
     <Box
-      sx={{
-        backgroundColor: "#FFF",
-        borderWidth: 1,
-        borderRadius: 18,
-        maxWidth: 350,
-        minWidth: 350,
-      }}
+      //width={["230px", "260px", "300px", "330px", "450px"]}
+      className={classes.container}
     >
-      <Box pt={20}>
+      <Box>
         <InfoPokemon {...pokemon} />
       </Box>
-      <Box sx={{ justifySelf: "flex-end" }}>
+      <Box
+        sx={{
+          alignSelf: "flex-end",
+          justifySelf: "flex-end"
+        }}
+      >
         <Button
           id={id}
           onClick={() => toggleTrueFalse(id)}
           sx={{
-            borderWidth: 2,
-            borderRadius: 90,
-            borderColor: "#E4E4E4"
+            borderColor: "#FFF",
+            padding: 0,
+            margin: 0
           }}
         >
           {
-            isToggled ? <FavoriteIcon sx={{ color: "#E4E4E4" }} /> : <FavoriteBorderIcon sx={{ color: "#E4E4E4" }} />
+            isToggled ? <FavoriteIcon sx={{ color: "#FFF" }} /> : <FavoriteBorderIcon sx={{ color: "#FFF" }} />
           }
         </Button>
       </Box>

@@ -54,7 +54,7 @@ export default function Pokedex(): JSX.Element {
 
   const result = filterPokemons(pokemons, filters);
   return (
-    <Box bgcolor='primary'>
+    <Box>
       <Box>
         <Box>
           <SearchNav searchName={searchName} handleChange={handleChange} searchNumber={searchNumber} handleChangeNumber={handleChangeNumber} searchType={searchType} handleChangeType={handleChangeType} />

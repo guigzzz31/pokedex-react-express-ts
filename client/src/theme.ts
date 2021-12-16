@@ -1,16 +1,47 @@
 import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
+export type ThemeCustom = {
+  palette: {
+    primary: {
+      main: string,
+      dark: string,
+      light: string,
+    },
+    secondary: {
+      main: string,
+      dark: string,
+      light: string,
+    },
+    text: {
+      primary: string,
+      secondary: string,
+    }
+    error: {
+      main: string,
+    }
+    info: 
+    {
+      main: string,
+    }
+    background: {
+      default: string
+    }
+  },
+}
+
+const theme: ThemeCustom = createTheme({
   palette: {
     primary: {
       //white
-      main: "#FFFFFF",
+      main: "#de435c",
+      dark: "#B92941",
+      light: "#ee7186",
     },
     secondary: {
       //grey
-      main: "#C4C4C4",
+      main: "#45b69c",
       dark: "#E9E9E9",
-      light: "#E4E4E4",
+      light: "#21d19f",
     },
     text: {
       //black
@@ -22,7 +53,7 @@ const theme = createTheme({
       main: "#DA627D",
     },
     info: {
-      main: "#64b5f6",
+      main: "#2d92d0",
     },
     //mint cream
     background: {
