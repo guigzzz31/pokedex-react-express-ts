@@ -10,30 +10,33 @@ const app = express();
 // app.use(bodyParser.json());
 app.use(cors())
 
-//Database
-// mongoose
-//   .connect("mongodb://127.0.0.1:27017/pokedexV1", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useCreateIndex: true,
-//     autoIndex: true,
-//   })
-//   .then(() => console.log("Connected to database"))
-//   .catch((err) => console.log(err));
+//Database local
+mongoose
+  .connect("mongodb://127.0.0.1:27017/pokedexV1", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    autoIndex: true,
+  })
+  .then(() => console.log("Connected to database"))
+  .catch((err) => console.log(err));
 
-const connection = "mongodb+srv://guigz:kaioken@cluster0.rhs7n.mongodb.net/pokedexV1?retryWrites=true&w=majority";
-mongoose.connect(connection,{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
-    .then(() => console.log("Database Connected Successfully"))
-    .catch(err => console.log(err))
+
+//Database production
+// const connection = "mongodb+srv://guigz:kaioken@cluster0.rhs7n.mongodb.net/pokedexV1?retryWrites=true&w=majority";
+// mongoose.connect(connection,{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+//     .then(() => console.log("Database Connected Successfully"))
+//     .catch(err => console.log(err))
+
+
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'client/public')))
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/public/index.html'))
-})
+// app.use(express.static(path.join(__dirname, 'client/public')))
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/client/build/public/index.html'))
+// })
 
 //routes
 app.use(routes);

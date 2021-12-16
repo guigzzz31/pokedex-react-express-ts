@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const PokemonSchema = new Schema({
+const PokemonSchema = new Schema(
+  {
   id: {type: String, unique: true},
   name: { type: String, unique: true },
   img: String,
