@@ -4,15 +4,29 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { ThemeProvider } from "@mui/styles";
+import { makeStyles, ThemeProvider } from "@mui/styles";
 
 import Pokedex from './components/Pokedex';
 import likedPokemons from './components/LikedPokemons';
 import Header from './components/Header';
-import theme from './theme'
+import theme, { ThemeCustom } from './theme'
 import { TabContext } from './AppContext';
+import { Box, useTheme } from '@mui/material';
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: "flex",
+    alignContent: "center",
+    //backgroundColor: theme.palette.primary.main,
+    borderWidth: 1,
+    borderRadius: 30,
+    boxShadow: "9px 9px 18px #c9c8c3, -9px -9px 18px #ffffff",
+  },
+}));
+
 
 export default function App(): JSX.Element {
+  const classes = useStyles();
   const [pageSelected, setPageSelected] = useState('yooo');
 
   function handlePage(event: any): any {
@@ -21,10 +35,10 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <div>
+    <Box>
       <ThemeProvider theme={theme}>
         <TabContext>
-          <>
+          <Box sx={{ backgroundColor: theme.palette.primary.main }}>
             <Router>
               <Header handlePage={handlePage} pageSelected={pageSelected} />
               <Switch>
@@ -33,10 +47,10 @@ export default function App(): JSX.Element {
               </Switch>
 
             </Router>
-          </>
+          </Box>
         </TabContext>
       </ThemeProvider>
-    </div>
+    </Box>
   )
 };
 

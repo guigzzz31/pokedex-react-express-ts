@@ -68,6 +68,7 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
                     fontSize: 9,
                     borderRadius: 9,
                     maxWidth: 50,
+                    height: 30,
                     padding: 1,
                     color: "#FFF",
                     fontWeight: 900

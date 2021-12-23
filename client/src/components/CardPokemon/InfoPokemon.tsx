@@ -34,12 +34,12 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
           justifyContent: "center",
           alignItems: "center",
           padding: 1,
+          cursor: "pointer"
         }}
+        onClick={handleOpen}
       >
         <Box>
-          <Button onClick={handleOpen}>
-            <PokemonAvatar img={img} />
-          </Button>
+          <PokemonAvatar img={img} />
         </Box>
         <Box>
           <Box p={1}>

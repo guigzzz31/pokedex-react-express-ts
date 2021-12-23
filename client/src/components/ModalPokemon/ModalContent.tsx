@@ -34,7 +34,7 @@ export default function ModalContent({ id, name, img, type, damages, stats, misc
           <PokemonAvatarModale img={img} />
         </Grid>
         <Grid item>
-          <Grid direction="column" container >
+          <Grid direction="column" container>
             <Grid item>
               <Box mb={1}>
                 <Grid spacing={1} container>

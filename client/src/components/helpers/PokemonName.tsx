@@ -8,11 +8,11 @@ export default function PokemonName({ name }: NameProps): JSX.Element {
 
   return (
     <Typography sx={{
-      color: "#000",
-      fontWeight: 900,
-      fontSize: 14,
+      color: "#e1f2fe",
+      fontWeight: 700,
+      fontSize: [18, 24, 28, 36],
     }}>
-      {CustomToUpperCase(name)}
+      {name}
     </Typography>
   )
 }
