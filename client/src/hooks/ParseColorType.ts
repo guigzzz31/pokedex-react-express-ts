@@ -30,12 +30,11 @@ export default function ParseColorType(typePokemon: string) {
       break;
     }
     case 'Fighting': {
-      // colorType = '#81341F';
       colorType = '#81221B';
       break;
     }
     case 'Poison': {
-      colorType = '#AE63D6';
+      colorType = '#BF8CD1';
       break;
     }
     case 'Ground': {
@@ -43,15 +42,15 @@ export default function ParseColorType(typePokemon: string) {
       break;
     }
     case 'Flying': {
-      colorType = '#7187E1';
+      colorType = '#5F9FFF';
       break;
     }
     case 'Psychic': {
-      colorType = '#E65591';
+      colorType = '#FFB7FC';
       break;
     }
     case 'Bug': {
-      colorType = '#BDDD6E';
+      colorType = '#D1E16F';
       break;
     }
     case 'Rock': {
@@ -63,7 +62,7 @@ export default function ParseColorType(typePokemon: string) {
       break;
     }
     case 'Dragon': {
-      colorType = '#705ECD';
+      colorType = '#C699FF';
       break;
     }
     case 'Dark': {
@@ -71,7 +70,7 @@ export default function ParseColorType(typePokemon: string) {
       break;
     }
     case 'Steel': {
-      colorType = '#BBC5C3';
+      colorType = '#E4E4E4';
       break;
     }
     default: {

@@ -9,8 +9,8 @@ const DamageGenerator = (damages: any) => {
   const keys = Object.keys(damages.damages);
   const values = Object.values(damages.damages);
   return (
-    <Box>
-      <Grid direction="row" spacing={1} container>
+    <Box sx={{ display: "flex" }}>
+      <Grid direction="column" spacing={1} container>
         {keys
           ? keys.map((key: string) => {
             return (
@@ -18,10 +18,10 @@ const DamageGenerator = (damages: any) => {
                 <Box
                   key={key}
                   sx={{
-                    borderRadius: 9,
+                    borderRadius: 8,
                     border: 1,
                     borderWidth: 2,
-                    borderColor: "#000",
+                    borderColor: "transparent",
                     width: 80,
                     bgcolor: ParseColorDamage(key)
                   }}
@@ -43,7 +43,7 @@ const DamageGenerator = (damages: any) => {
           })
           : null}
       </Grid>
-      <Grid direction="row" spacing={1} container>
+      <Grid direction="column" spacing={1} container>
         {values
           ? values.map((value: any) => {
             return (
@@ -51,9 +51,10 @@ const DamageGenerator = (damages: any) => {
                 <Box
                   key={value}
                   sx={{
-                    borderRadius: 9,
+                    borderRadius: 8,
                     border: 1,
                     borderWidth: 2,
+                    backgroundColor: "#FFF",
                     borderColor: ParseColorDamageValue(value),
                     width: 80,
                   }}

@@ -56,7 +56,7 @@ export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
 
   return (
     <Box
-      //width={["230px", "260px", "300px", "330px", "450px"]}
+      // maxWidth={["230px", "260px", "300px", "330px", "450px"]}
       className={classes.container}
     >
       <Box>

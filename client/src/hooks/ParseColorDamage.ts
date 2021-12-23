@@ -6,28 +6,28 @@ export default function ParseColorDamage(typePokemon: string) {
       break;
     }
     case 'fire': {
-      colorType = '#FF8A8A';
+      colorType = '#ED7F37';
       break;
     }
     case 'water': {
-      colorType = '#88D1FB';
+      colorType = '#3EAFF6';
       break;
     }
     case 'electric': {
-      colorType = '#FFE175';
+      colorType = '#FCEF2C';
       break;
     }
     case 'grass': {
-      colorType = '#B4FE7B';
+      colorType = '#56980F';
       break;
     }
     case 'ice': {
-      colorType = '#C6EAFF';
+      colorType = '#66D1E5';
       break;
     }
     case 'fighting': {
       // colorType = '#81341F';
-      colorType = '#FFB169';
+      colorType = '#81221B';
       break;
     }
     case 'poison': {
