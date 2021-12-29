@@ -10,7 +10,7 @@ export default function PokemonName({ name }: NameProps): JSX.Element {
     <Typography sx={{
       color: "#e1f2fe",
       fontWeight: 700,
-      fontSize: [18, 24, 28, 36],
+      fontSize: [18, 24, 28, 34],
     }}>
       {name}
     </Typography>
