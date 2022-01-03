@@ -49,7 +49,7 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
           value={searchName}
           onChange={handleChange}
           size="small"
-          color={"info"}
+          color="info"
           className={classes.textInput}
           sx={{
             backgroundColor: "#FFFFFF",
@@ -63,7 +63,7 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
           type="number"
           //variant="outlined"
           label="Number"
-          color="secondary"
+          color="info"
           value={searchNumber}
           onChange={handleChangeNumber}
           size="small"
@@ -76,10 +76,10 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
           variant="outlined"
           size="small"
         >
-          <InputLabel color="secondary">Type</InputLabel>
+          <InputLabel>Type</InputLabel>
           <Select
             value={searchType}
-            color='secondary'
+            color="info"
             onChange={handleChangeType}
             label="Type"
             sx={{ minWidth: 120, }}

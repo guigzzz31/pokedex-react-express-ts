@@ -19,7 +19,7 @@ export type ThemeCustom = {
     error: {
       main: string,
     }
-    info: 
+    info:
     {
       main: string,
     }
@@ -32,13 +32,13 @@ export type ThemeCustom = {
 const theme: ThemeCustom = createTheme({
   palette: {
     primary: {
-      //white
+      //red
       main: "#de435c",
       dark: "#B92941",
       light: "#ee7186",
     },
     secondary: {
-      //grey
+      //green
       main: "#45b69c",
       dark: "#E9E9E9",
       light: "#21d19f",
@@ -46,7 +46,7 @@ const theme: ThemeCustom = createTheme({
     text: {
       //black
       primary: "#000000",
-      secondary: "#FFFFFF",
+      secondary: "#e1f2fe",
     },
     error: {
       //blush

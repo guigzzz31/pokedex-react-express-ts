@@ -55,9 +55,18 @@ export default function Pokedex(): JSX.Element {
   }
 
   const result = filterPokemons(pokemons, filters);
-  console.log('isLoading', isLoading)
+
   return (
-    <Box sx={{ width: "100%", display: "flex", justifyContent: "center", flexDirection: "column", paddingTop: 4 }}>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 4,
+      }}
+    >
       <SearchNav
         searchName={searchName}
         searchNumber={searchNumber}

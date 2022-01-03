@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link
 } from "react-router-dom";
 import { makeStyles, ThemeProvider } from "@mui/styles";
 
@@ -16,13 +17,14 @@ import { Box, useTheme } from '@mui/material';
 
 
 export default function App(): JSX.Element {
-  const [pageSelected, setPageSelected] = useState('yooo');
+  const [pageSelected, setPageSelected] = useState('pokedex');
 
-  function handlePage(event: any): any {
-    setPageSelected(event.target.value)
-    console.log(pageSelected)
+  const handlePage = (tab: string, event: React.FormEvent<HTMLInputElement>): void => {
+    setPageSelected(tab)
+    console.log("coucoui")
   }
 
+  console.log("state app", pageSelected)
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -38,7 +40,7 @@ export default function App(): JSX.Element {
               <Header handlePage={handlePage} pageSelected={pageSelected} />
               <Switch>
                 <Route exact path="/" component={Pokedex} />
-                <Route exact path="/api/pokemons/liked" component={likedPokemons} />
+                <Route path="/api/pokemons/liked" component={likedPokemons} />
               </Switch>
             </Router>
           </Box>
