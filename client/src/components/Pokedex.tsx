@@ -1,12 +1,12 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Box, Grid, CircularProgress, useMediaQuery } from "@mui/material";
 
 import appReducer from '../appReducer';
 
-import SearchNav from './SearchNav/SearchNav';
 import PokemonGenerator from './generators/PokemonGenerator';
 
 import useFetchPokemons from '../hooks/useFetchPokemons';
+import SearchBar from './SearchBar/SearchBar';
 
 const initialState = {
   showAddForm: false,
@@ -19,15 +19,15 @@ export default function Pokedex(): JSX.Element {
 
   const matches = useMediaQuery('(min-width:600px)');
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const [searchName, setSearchName] = React.useState("");
-  const [searchType, setSearchType] = React.useState("");
-  const [searchNumber, setSearchNumber] = React.useState("");
+  const [searchName, setSearchName] = useState("");
+  const [searchType, setSearchType] = useState("");
+  const [searchNumber, setSearchNumber] = useState("");
 
-  const handleChange = (event: any) => {
+  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchName(event.target.value);
   };
 
-  const handleChangeNumber = (event: any) => {
+  const handleChangeNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchNumber(event.target.value);
   };
 
@@ -67,11 +67,11 @@ export default function Pokedex(): JSX.Element {
         paddingTop: 4,
       }}
     >
-      <SearchNav
+      <SearchBar
         searchName={searchName}
         searchNumber={searchNumber}
         searchType={searchType}
-        handleChange={handleChange}
+        handleChangeName={handleChangeName}
         handleChangeNumber={handleChangeNumber}
         handleChangeType={handleChangeType} />
       {isLoading ? <CircularProgress /> : <PokemonGenerator {...result} />}
