@@ -10,9 +10,9 @@ import { makeStyles, ThemeProvider } from "@mui/styles";
 import Pokedex from './components/Pokedex';
 import likedPokemons from './components/LikedPokemons';
 import Header from './components/Header';
-import theme, { ThemeCustom } from './theme'
+import theme from './theme'
 import { TabContext } from './AppContext';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 
 
 

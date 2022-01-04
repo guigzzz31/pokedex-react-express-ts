@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
     paddingTop: 24,
   },
   selected: {
-    backgroundColor: theme.palette.primary.main,
+    //backgroundColor: theme.palette.primary.main,
     borderColor: theme.palette.text.secondary,
     display: "flex",
     justifyContent: "center",
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
     fontSize: 16,
   },
   unselected: {
-    backgroundColor: theme.palette.primary.main,
+    //backgroundColor: theme.palette.primary.main,
     display: "flex",
     justifyContent: "center",
     border: "solid",

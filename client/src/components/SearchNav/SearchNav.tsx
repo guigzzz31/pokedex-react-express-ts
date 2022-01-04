@@ -14,19 +14,41 @@ import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 import SearchProps from '../../types/Search';
 import { types } from './types';
 import { ThemeCustom } from "../../theme";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, styled } from "@mui/styles";
 
 const useStyles = makeStyles((theme: ThemeCustom) => ({
   textInput: {
     // display: "flex",
     // alignContent: "center",
-    backgroundColor: theme.palette.primary.light,
+    //backgroundColor: theme.palette.text.secondary,
     // borderColor: "#fff",
     // // borderWidth: 1,
     //borderRadius: 30,
+    //borderColor: theme.palette.primary.light,
     //boxShadow: "9px 9px 18px #c9c8c3, -9px -9px 18px #ffffff",
   },
 }));
+
+const CssTextField = styled(TextField)({
+
+  '& label.Mui-focused': {
+    color: '#e1f2fe',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#e1f2fe',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#e1f2fe',
+    },
+    '&:hover fieldset': {
+      borderColor: '#e1f2fe',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#e1f2fe',
+    },
+  },
+});
 
 export default function SearchNav({ searchName, handleChange, searchNumber, handleChangeNumber, searchType, handleChangeType }: SearchProps): JSX.Element {
   const matches = useMediaQuery('(min-width:700px)');
@@ -42,23 +64,28 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
       }}
     >
       <Box m={2}>
-        <TextField
+        <CssTextField
           type="text"
           variant="outlined"
           label="Name"
           value={searchName}
           onChange={handleChange}
           size="small"
-          color="info"
-          className={classes.textInput}
-          sx={{
-            backgroundColor: "#FFFFFF",
-            fontSize: "32px"
+          InputLabelProps={{
+            style: {
+              color: '#e1f2fe'
+            }
           }}
+          InputProps={{
+            style: {
+              color: '#e1f2fe'
+            }
+          }}
+          className={classes.textInput}
         />
       </Box>
       <Box m={2}>
-        <TextField
+        <CssTextField
           className={classes.textInput}
           type="number"
           //variant="outlined"
