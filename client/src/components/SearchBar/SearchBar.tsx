@@ -3,8 +3,6 @@ import {
   TextField,
   FormControl,
   MenuItem,
-  Select,
-  InputLabel,
 } from "@mui/material";
 
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -16,18 +14,6 @@ import { types } from './types';
 import { ThemeCustom } from "../../theme";
 import { makeStyles, styled } from "@mui/styles";
 
-const useStyles = makeStyles((theme: ThemeCustom) => ({
-  textInput: {
-    // display: "flex",
-    // alignContent: "center",
-    //backgroundColor: theme.palette.text.secondary,
-    // borderColor: "#fff",
-    // // borderWidth: 1,
-    //borderRadius: 30,
-    //borderColor: theme.palette.primary.light,
-    //boxShadow: "9px 9px 18px #c9c8c3, -9px -9px 18px #ffffff",
-  },
-}));
 
 const CssTextField = styled(TextField)({
 
@@ -50,9 +36,15 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export default function SearchNav({ searchName, handleChange, searchNumber, handleChangeNumber, searchType, handleChangeType }: SearchProps): JSX.Element {
+export default function SearchBar({
+  searchName,
+  handleChangeName,
+  searchNumber,
+  handleChangeNumber,
+  searchType,
+  handleChangeType
+}: SearchProps): JSX.Element {
   const matches = useMediaQuery('(min-width:700px)');
-  const classes = useStyles()
   return (
     <Box
       sx={{
@@ -66,11 +58,9 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
       <Box m={2}>
         <CssTextField
           type="text"
-          variant="outlined"
           label="Name"
           value={searchName}
-          onChange={handleChange}
-          size="small"
+          onChange={handleChangeName}
           InputLabelProps={{
             style: {
               color: '#e1f2fe'
@@ -81,51 +71,48 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
               color: '#e1f2fe'
             }
           }}
-          className={classes.textInput}
         />
       </Box>
       <Box m={2}>
         <CssTextField
-          className={classes.textInput}
           type="number"
-          //variant="outlined"
           label="Number"
-          color="info"
           value={searchNumber}
           onChange={handleChangeNumber}
-          size="small"
+          InputLabelProps={{
+            style: {
+              color: '#e1f2fe'
+            }
+          }}
+          InputProps={{
+            style: {
+              color: '#e1f2fe'
+            }
+          }}
         />
-
       </Box>
       <Box m={2}>
         <FormControl
-          className={classes.textInput}
           variant="outlined"
-          size="small"
         >
-          <InputLabel>Type</InputLabel>
-          <Select
-            value={searchType}
-            color="info"
-            onChange={handleChangeType}
+          <CssTextField
+            select
+            InputLabelProps={{
+              style: {
+                color: '#e1f2fe'
+              }
+            }}
+            InputProps={{
+              style: {
+                color: '#e1f2fe',
+                textAlign: 'center',
+              }
+            }}
             label="Type"
+            value={searchType}
+            onChange={handleChangeType}
             sx={{ minWidth: 120, }}
-            renderValue={() =>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: 'center',
-                  fontSize: 9,
-                  borderRadius: 9,
-                  maxWidth: 50,
-                  color: "#FFF",
-                  fontWeight: 900
-                }}
-                bgcolor={ParseColorType(searchType)}
-              >
-                {CustomToUpperCase(searchType)}
-              </Box>
-            }>
+          >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
@@ -133,21 +120,22 @@ export default function SearchNav({ searchName, handleChange, searchNumber, hand
               <MenuItem key={type} value={type}>
                 <Box
                   sx={{
+                    color: "#FFF",
                     borderRadius: 9,
                     maxWidth: 50,
-                    color: "#FFF",
                     fontWeight: 900,
-                    padding: 1,
-                    fontSize: 10,
+                    paddingLeft: 2,
+                    paddingRight: 2,
+                    fontSize: 12,
                   }}
                   bgcolor={ParseColorType(type)}>
                   {CustomToUpperCase(type)}
                 </Box>
               </MenuItem>
             ))}
-          </Select>
-        </FormControl>
-      </Box>
-    </Box>
+          </CssTextField>
+        </FormControl >
+      </Box >
+    </Box >
   )
 };
