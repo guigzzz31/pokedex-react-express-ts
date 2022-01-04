@@ -1,14 +1,19 @@
 import { createContext, SetStateAction, useContext, useState, ReactNode } from "react";
 
 
-type ContextType = { currentTab: string; handleChange: (event: any, newValue: any, name: any) => void; handleClick: (event: any, name: any) => void; } | null
-const AppContext = createContext<ContextType>(null);
+export type ContextTypeCustom = {
+	currentTab: string;
+	handleChange: (event: any, newValue: any, name: any) => void;
+	handleClick: (event: any, name: any) => void;
+} | null
+
+const AppContext = createContext<ContextTypeCustom>(null);
 
 export interface IChildren {
 	children: any
 }
 export function TabContext({ children }: IChildren) {
-	const [currentTab, setCurrentTab] = useState<string>("/");
+	const [currentTab, setCurrentTab] = useState<string>("pokedex");
 
 	const handleChange = (event: any, newValue: SetStateAction<string>, name: any) => {
 		setCurrentTab(newValue);
@@ -31,6 +36,6 @@ export function TabContext({ children }: IChildren) {
 	);
 }
 
-export function useTabs() {
+export function useTabs(): ContextTypeCustom {
 	return useContext(AppContext);
 }

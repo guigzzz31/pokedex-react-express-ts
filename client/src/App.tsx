@@ -3,83 +3,49 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link
 } from "react-router-dom";
 import { makeStyles, ThemeProvider } from "@mui/styles";
 
 import Pokedex from './components/Pokedex';
 import likedPokemons from './components/LikedPokemons';
 import Header from './components/Header';
-import theme, { ThemeCustom } from './theme'
+import theme from './theme'
 import { TabContext } from './AppContext';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    alignContent: "center",
-    //backgroundColor: theme.palette.primary.main,
-    borderWidth: 1,
-    borderRadius: 30,
-    boxShadow: "9px 9px 18px #c9c8c3, -9px -9px 18px #ffffff",
-  },
-}));
 
 
 export default function App(): JSX.Element {
-  const classes = useStyles();
-  const [pageSelected, setPageSelected] = useState('yooo');
+  const [pageSelected, setPageSelected] = useState('pokedex');
 
-  function handlePage(event: any): any {
-    setPageSelected(event.target.value)
-    console.log(pageSelected)
+  const handlePage = (tab: string, event: React.FormEvent<HTMLInputElement>): void => {
+    setPageSelected(tab)
+    console.log("coucoui")
   }
 
+  console.log("state app", pageSelected)
   return (
-    <Box>
+    <>
       <ThemeProvider theme={theme}>
         <TabContext>
-          <Box sx={{ backgroundColor: theme.palette.primary.main }}>
+          <Box
+            sx={{
+              backgroundColor: theme.palette.primary.main,
+              width: "100%",
+              height: "100%",
+            }}
+          >
             <Router>
               <Header handlePage={handlePage} pageSelected={pageSelected} />
               <Switch>
                 <Route exact path="/" component={Pokedex} />
-                <Route exact path="/api/pokemons/liked" component={likedPokemons} />
+                <Route path="/api/pokemons/liked" component={likedPokemons} />
               </Switch>
-
             </Router>
           </Box>
         </TabContext>
       </ThemeProvider>
-    </Box>
+    </>
   )
 };
-
-//style
-// interface StyleProps {
-//   container: BaseCSSProperties,
-//   likeButton: BaseCSSProperties,
-//   likeIcon: BaseCSSProperties,
-//   info: BaseCSSProperties
-// }
-
-// type PropsClasses = Record<keyof StyleProps, string>
-
-// let baseStyle: StyleProps = {
-//   container: {
-//     backgroundColor: "#F9F9F9",
-//     borderWidth: 1,
-//     borderRadius: 18,
-//   },
-//   likeIcon: {
-//     color: "#E4E4E4",
-//   },
-//   likeButton: {
-//     borderWidth: 2,
-//     borderRadius: 90,
-//     borderColor: "#E4E4E4"
-//   },
-//   info: {
-//     paddingTop: 23,
-//   }
-// }
-// const useStyles = makeStyles<Theme, StyleProps>(() => baseStyle as any);

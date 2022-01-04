@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Grid
+  Grid,
+  useMediaQuery
 } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -17,10 +18,10 @@ import { ThemeCustom } from "../../theme";
 
 const useStyles = makeStyles((theme: ThemeCustom) => ({
   container: {
+    position: "relative",
+    width: "100%",
     display: "flex",
-    // flexDirection: "column",
-    // width: "100%",
-    justifyContent: "center",
+    justifyContent: "space-around",
     backgroundColor: theme.palette.primary.light,
     borderWidth: 1,
     borderRadius: 30,
@@ -56,7 +57,7 @@ export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
 
   return (
     <Box
-      // maxWidth={["230px", "260px", "300px", "330px", "450px"]}
+      width={["230px", "260px", "300px", "330px", "500px"]}
       className={classes.container}
     >
       <Box>
@@ -72,7 +73,10 @@ export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
           id={id}
           onClick={() => toggleTrueFalse(id)}
           sx={{
+            position: "absolute",
             borderColor: "#FFF",
+            bottom: 12,
+            right: 0,
             padding: 0,
             margin: 0
           }}

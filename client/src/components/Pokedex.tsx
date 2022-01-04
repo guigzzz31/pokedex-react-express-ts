@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Box, Grid, CircularProgress } from "@mui/material";
+import { Box, Grid, CircularProgress, useMediaQuery } from "@mui/material";
 
 import appReducer from '../appReducer';
 
@@ -16,6 +16,8 @@ const initialState = {
 };
 
 export default function Pokedex(): JSX.Element {
+
+  const matches = useMediaQuery('(min-width:600px)');
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [searchName, setSearchName] = React.useState("");
   const [searchType, setSearchType] = React.useState("");
@@ -53,16 +55,26 @@ export default function Pokedex(): JSX.Element {
   }
 
   const result = filterPokemons(pokemons, filters);
+
   return (
-    <Box>
-      <Box>
-        <Box>
-          <SearchNav searchName={searchName} handleChange={handleChange} searchNumber={searchNumber} handleChangeNumber={handleChangeNumber} searchType={searchType} handleChangeType={handleChangeType} />
-        </Box>
-        <Box>
-          {isLoading ? <CircularProgress /> : <PokemonGenerator {...result} />}
-        </Box>
-      </Box>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 4,
+      }}
+    >
+      <SearchNav
+        searchName={searchName}
+        searchNumber={searchNumber}
+        searchType={searchType}
+        handleChange={handleChange}
+        handleChangeNumber={handleChangeNumber}
+        handleChangeType={handleChangeType} />
+      {isLoading ? <CircularProgress /> : <PokemonGenerator {...result} />}
     </Box>
   )
 };
