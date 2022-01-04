@@ -8,9 +8,9 @@ export default function PokemonName({ name }: NameProps): JSX.Element {
 
   return (
     <Typography sx={{
-      color: "#e1f2fe",
+      color: "#fff",
       fontWeight: 700,
-      fontSize: [18, 24, 28, 34],
+      fontSize: [22, 24, 26, 28, 34],
     }}>
       {name}
     </Typography>

@@ -19,14 +19,13 @@ import { ThemeCustom } from "../../theme";
 const useStyles = makeStyles((theme: ThemeCustom) => ({
   container: {
     position: "relative",
-    width: "100%",
     display: "flex",
     justifyContent: "space-around",
     backgroundColor: theme.palette.primary.light,
     borderWidth: 1,
     borderRadius: 30,
     boxShadow: "20px 20px 60px #bd394e, -20px -20px 60px #ff4d6a",
-    margin: "24px",
+    margin: "16px",
     padding: "12px",
   },
 }));
@@ -57,7 +56,7 @@ export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
 
   return (
     <Box
-      width={["230px", "260px", "300px", "330px", "500px"]}
+      width={["300px", "320px", "330px", "400px", "500px"]}
       className={classes.container}
     >
       <Box>

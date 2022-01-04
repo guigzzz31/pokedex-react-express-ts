@@ -1,11 +1,10 @@
 import { Box, Avatar, CardMedia, useTheme } from "@mui/material";
-import { ThemeCustom } from "../../theme";
 
-type AvatarProps = { img: string };
+type AvatarProps = { img: string, name: string };
 
-export default function PokemonAvatar({ img }: AvatarProps): JSX.Element {
-  const widthAvatar = ["50px", "70px", "150px", "160px", "200px"]
-  const heightAvatar = ["50px", "70px", "150px", "140px", "190px"]
+export default function PokemonAvatar({ img, name }: AvatarProps): JSX.Element {
+  const widthAvatar = ["112px", "120px", "150px", "160px", "200px"]
+  const heightAvatar = ["112px", "120px", "150px", "140px", "190px"]
   const theme = useTheme()
 
   return (
@@ -13,10 +12,10 @@ export default function PokemonAvatar({ img }: AvatarProps): JSX.Element {
       <CardMedia
         component="img"
         image={img}
-        alt={img}
+        alt={name}
         sx={{
           objectFit: "contain",
-          borderRadius: 6,
+          borderRadius: [4, 6],
           backgroundColor: "#FFF",
           boxShadow: "20px 20px 60px #ca6072, -20px -20px 60px #ff829a",
           width: widthAvatar,

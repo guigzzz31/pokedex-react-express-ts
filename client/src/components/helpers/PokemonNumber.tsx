@@ -8,9 +8,9 @@ export default function PokemonNumber({ id }: NumberProps): JSX.Element {
 
   return (
     <Typography sx={{
-      color: "#FFF",
+      color: "#e1f2fe",
       fontWeight: 900,
-      fontSize: [16, 20, 22, 32],
+      fontSize: [20, 22, 24, 26, 32],
     }}>
       {CustomToUpperCase(id)}
     </Typography>

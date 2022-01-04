@@ -31,7 +31,8 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          width: "100%",
+          justifyContent: "space-evenly",
           alignItems: "center",
           padding: 1,
           cursor: "pointer"
@@ -39,7 +40,7 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
         onClick={handleOpen}
       >
         <Box>
-          <PokemonAvatar img={img} />
+          {img && <PokemonAvatar name={name} img={img} />}
         </Box>
         <Box>
           <Box p={1}>

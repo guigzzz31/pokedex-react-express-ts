@@ -14,6 +14,8 @@ import { types } from './types';
 import { ThemeCustom } from "../../theme";
 import { makeStyles, styled } from "@mui/styles";
 
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
 
 const CssTextField = styled(TextField)({
 
@@ -33,6 +35,9 @@ const CssTextField = styled(TextField)({
     '&.Mui-focused fieldset': {
       borderColor: '#e1f2fe',
     },
+    '& 	.MuiSelect-icon': {
+      color: "#e1f2fe"
+    }
   },
 });
 
@@ -76,6 +81,7 @@ export default function SearchBar({
       <Box m={2}>
         <CssTextField
           type="number"
+          //inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
           label="Number"
           value={searchNumber}
           onChange={handleChangeNumber}
@@ -108,6 +114,7 @@ export default function SearchBar({
                 textAlign: 'center',
               }
             }}
+
             label="Type"
             value={searchType}
             onChange={handleChangeType}
