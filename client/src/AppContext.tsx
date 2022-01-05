@@ -3,14 +3,8 @@ import React, { createContext, SetStateAction, useContext, useState, ReactNode, 
 
 export type ContextTypeCustom = {
 	currentTab: string;
-	handleChange: (event: any, newValue: any, name: any) => void;
+	handleChange: (event: React.ChangeEvent<HTMLInputElement>, newValue: SetStateAction<string>, name: string) => void;
 	handleClick: (event: any, name: any) => void;
-}
-
-const initialContext = {
-	currentTab: "pokedex",
-	handleChange: () => { },
-	handleClick: () => { }
 }
 
 export const TabContext = createContext<Partial<ContextTypeCustom>>({});
@@ -22,11 +16,11 @@ export interface IProps {
 const TabProvider: React.FC<IProps> = (props: IProps) => {
 	const [currentTab, setCurrentTab] = useState<string>("pokedex");
 
-	const handleChange = (event: any, newValue: SetStateAction<string>, name: any) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, newValue: SetStateAction<string>, name: string) => {
 		setCurrentTab(newValue);
 	};
 
-	const handleClick = (event: SetStateAction<string>, name: any) => {
+	const handleClick = (event: SetStateAction<string>, name: string) => {
 		setCurrentTab(event);
 	};
 
@@ -44,7 +38,3 @@ const TabProvider: React.FC<IProps> = (props: IProps) => {
 }
 
 export default TabProvider;
-
-// export function useTabs() {
-// 	return useContext(AppContext);
-// }

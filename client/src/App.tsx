@@ -24,7 +24,7 @@ export default function App(): JSX.Element {
     setPageSelected(tab)
   }
 
-  console.log("state app", pageSelected)
+  // console.log("state app", pageSelected)
   return (
     <>
       <ThemeProvider theme={theme}>

@@ -14,7 +14,8 @@ export default function PokemonNameModale({ name }: NameProps): JSX.Element {
         fontWeight: 900,
         fontSize: 40,
       }}>
-      {CustomToUpperCase(name)}
+      {CustomToUpperCase(name!)}
     </Typography>
+
   )
 }

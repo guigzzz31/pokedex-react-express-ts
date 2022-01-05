@@ -15,6 +15,7 @@ const useFetchPokemonDetails = (dispatch: React.Dispatch<Partial<TInitialState>>
 					type: "POKEMON_DETAILS_FETCH_SUCCESS",
 					pokemonDetails: result.data.result,
 				});
+				console.log("result", result)
 			} catch (error) {
 				console.log(error);
 			}

@@ -26,7 +26,7 @@ export default function ModalContent({ id, name, img, type, damages, stats, misc
       <Box
         sx={{
           display: "flex",
-          flexDirection: !matches ? "column" : "row",
+          flexDirection: matches ? "row" : "column",
           justifyContent: "space-evenly",
           alignItems: "center",
           width: '100%',
@@ -58,7 +58,7 @@ export default function ModalContent({ id, name, img, type, damages, stats, misc
           </Box>
         </Box>
         <Box>
-          <GraphGenerator stats={stats} />
+          {/* <GraphGenerator stats={stats} /> */}
         </Box>
         <Box>
           <DamageGenerator damages={damages} />

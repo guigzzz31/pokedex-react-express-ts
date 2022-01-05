@@ -12,7 +12,7 @@ export default function LikedPokemons(): JSX.Element {
   useFetchPokemonsLiked(dispatch);
   const { likedPokemons } = state;
   return (
-    <Box bgcolor='primary'>
+    <Box>
       <PokemonGenerator {...likedPokemons} />
     </Box>
   )
