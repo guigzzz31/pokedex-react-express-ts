@@ -10,7 +10,7 @@ export default function PokemonNumberModale({ id }: NumberProps): JSX.Element {
   return (
     <Typography
       sx={{
-        color: "#9E9E9E",
+        color: "#e1f2fe",
         fontWeight: 900,
         fontSize: 40,
       }}>

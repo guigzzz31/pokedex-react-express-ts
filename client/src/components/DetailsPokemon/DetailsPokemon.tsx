@@ -1,78 +1,120 @@
 import { Box, useMediaQuery } from '@mui/material';
-import { useReducer } from 'react';
+import { makeStyles } from "@mui/styles";
+
 import { useParams } from 'react-router';
+
+import { useReducer } from 'react';
 import appReducer, { initialState } from '../../appReducer';
 import useFetchPokemonDetails from '../../hooks/useFetchPokemonDetails';
-import PokemonProps from '../../types/Pokemon';
+
 import DamageGenerator from '../generators/DamageGenerator';
 import GraphGenerator from '../generators/GraphGenerator';
+import PokemonAvatar from '../helpers/PokemonAvatar';
+import PokemonName from '../helpers/PokemonName';
+import PokemonNumber from '../helpers/PokemonNumber';
 import InfoModale from '../ModalPokemon/InfoModale';
-import PokemonAvatarModale from '../ModalPokemon/PokemonAvatarModale';
-import PokemonNameModale from '../ModalPokemon/PokemonNameModale';
-import PokemonNumberModale from '../ModalPokemon/PokemonNumberModale';
 import TypeGenModale from '../ModalPokemon/TypeGenModale';
 
+import PokemonProps from '../../types/Pokemon';
+import { ThemeCustom } from '../../theme';
 
 export type RouteProps = {
 	id: string
 }
 
+const useStyles = makeStyles((theme: ThemeCustom) => ({
+	container: {
+		position: "relative",
+		display: "flex",
+		justifyContent: "space-around",
+		backgroundColor: theme.palette.primary.light,
+		borderWidth: 1,
+		borderRadius: 30,
+		boxShadow: "20px 20px 60px #bd394e, -20px -20px 60px #ff4d6a",
+		margin: "44px 16px 4px 16px",
+		padding: "12px",
+	},
+}));
+
 const DetailsPokemon = () => {
+	const classes = useStyles();
+
 	const { id } = useParams<RouteProps>();
 	const [state, dispatch] = useReducer(appReducer, initialState);
 	useFetchPokemonDetails(dispatch, id)
-	const matches = useMediaQuery('(min-width:700px)');
+	const matches700 = useMediaQuery('(max-width:700px)');
+	const matches900 = useMediaQuery('(min-width:900px)');
 
-	// const { pokemonDetails } = state
 	const { name, img, type, damages, stats, misc } = state?.pokemonDetails!;
 
-	// console.log("daamages", stats)
-
 	return (
-		<Box>
-			{state && <Box
-				sx={{
-					display: "flex",
-					flexDirection: !matches ? "column" : "row",
-					justifyContent: "space-evenly",
-					alignItems: "center",
-					backgroundColor: "#ee7186",
-					borderRadius: 6,
-					//width: '100%',
-					margin: 2,
-					padding: [2, 3, 4]
-				}}
-			>
-				<Box>
-					<PokemonAvatarModale img={img!} />
-				</Box>
-				<Box>
-					<Box sx={{ display: "flex", flexDirection: "column" }}>
-						<Box>
-							<Box mb={1}>
-								<Box>
-									<Box>
-										<PokemonNumberModale id={id!} />
-									</Box>
-									<Box>
-										<PokemonNameModale name={name!} />
-									</Box>
+		<Box className={classes.container}>
+			<Box sx={{ width: "100%" }}>
+				{state && <Box
+					sx={{
+						display: "flex",
+						flexDirection: !matches900 ? "column" : "row",
+						justifyContent: !matches900 ? "center" : "space-evenly",
+						flexWrap: !matches700 ? "wrap" : "nowrap",
+						alignItems: "center",
+						backgroundColor: "#ee7186",
+						borderRadius: 6,
+						padding: [2, 3, 4]
+					}}
+				>
+					<Box>
+						<PokemonAvatar img={img!} name={name!} isDetails />
+					</Box>
+					<Box>
+						<Box sx={{ display: "flex", flexDirection: "column" }}>
+							<Box mt={2}>
+								<Box
+									sx={{
+										display: "flex",
+										width: "100%",
+										flexDirection: !matches900 ? "row" : "column",
+										justifyContent: "space-between"
+									}}
+									my={2}
+								>
+									<PokemonNumber id={id!} isDetail />
+									<PokemonName name={name!} isDetail />
+								</Box>
+							</Box>
+							<Box>
+								<Box my={2}>
+									<TypeGenModale type={type!} />
+								</Box>
+								<Box my={2}>
+									<InfoModale misc={misc!} />
 								</Box>
 							</Box>
 						</Box>
-						<Box>
-							<TypeGenModale type={type!} />
-							<InfoModale misc={misc!} />
-						</Box>
 					</Box>
-				</Box>
-				<Box>
-					<GraphGenerator stats={stats!} />
-				</Box>
-				<Box>
-					<DamageGenerator damages={damages!} />
-				</Box>
-			</Box>}
+					<Box ml='16px'>
+						<GraphGenerator stats={stats!} />
+					</Box>
+					<Box>
+						<DamageGenerator damages={damages!} />
+					</Box>
+				</Box>}
+			</Box>
+			{/* <Button
+				id={id}
+				onClick={() => toggleTrueFalse(id)}
+				sx={{
+					position: "absolute",
+					borderColor: "#FFF",
+					bottom: 12,
+					right: 0,
+					padding: 0,
+					margin: 0
+				}}
+			>
+				{
+					isToggled ? <FavoriteIcon sx={{ color: "#FFF" }} /> : <FavoriteBorderIcon sx={{ color: "#FFF" }} />
+				}
+			</Button> */}
 		</Box>
 	)
 }

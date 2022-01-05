@@ -28,10 +28,11 @@ export default function GraphGenerator(stats: any) {
       <RadarChart
         outerRadius={radius}
         data={dataFinal}
+
       >
-        <PolarGrid />
-        <PolarAngleAxis dataKey="stat" />
-        <PolarRadiusAxis domain={[0, 180]} />
+        <PolarGrid fill='#FFF' stroke="#e1f2fe" />
+        <PolarAngleAxis dataKey="stat" stroke="#FFF" />
+        <PolarRadiusAxis domain={[0, 160]} stroke="#e1f2fe" />
         <Radar name="Stats" dataKey="value" stroke="#B92941" fill="#B92941" fillOpacity={0.6} />
       </RadarChart>
     </ResponsiveContainer>

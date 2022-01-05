@@ -14,7 +14,7 @@ export default function InfoModale({ misc }: any): JSX.Element {
             <Grid item>
               <Typography
                 sx={{
-                  color: "#000",
+                  color: "#B92941",
                   fontWeight: 900,
                   fontSize: 18,
                 }}
@@ -35,7 +35,7 @@ export default function InfoModale({ misc }: any): JSX.Element {
               <Typography
                 align="center"
                 sx={{
-                  color: "#000",
+                  color: "#B92941",
                   fontWeight: 900,
                   fontSize: 18,
                 }}
@@ -58,7 +58,7 @@ export default function InfoModale({ misc }: any): JSX.Element {
                   <Grid item>
                     <Typography
                       sx={{
-                        color: "#000",
+                        color: "#B92941",
                         fontWeight: 900,
                         fontSize: 18,
                       }}
@@ -74,7 +74,7 @@ export default function InfoModale({ misc }: any): JSX.Element {
                   <Grid item>
                     <Typography
                       sx={{
-                        color: "#000",
+                        color: "#B92941",
                         fontWeight: 900,
                         fontSize: 18,
                       }}
@@ -94,7 +94,7 @@ export default function InfoModale({ misc }: any): JSX.Element {
                   <Grid item>
                     <Typography
                       sx={{
-                        color: "#000",
+                        color: "#B92941",
                         fontWeight: 900,
                         fontSize: 18,
                       }}
@@ -110,7 +110,7 @@ export default function InfoModale({ misc }: any): JSX.Element {
                   <Grid item>
                     <Typography
                       sx={{
-                        color: "#000",
+                        color: "#B92941",
                         fontWeight: 900,
                         fontSize: 18,
                       }}

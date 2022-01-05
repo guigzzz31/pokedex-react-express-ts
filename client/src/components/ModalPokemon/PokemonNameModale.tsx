@@ -10,7 +10,7 @@ export default function PokemonNameModale({ name }: NameProps): JSX.Element {
   return (
     <Typography
       sx={{
-        color: "#000",
+        color: "#FFF",
         fontWeight: 900,
         fontSize: 40,
       }}>
