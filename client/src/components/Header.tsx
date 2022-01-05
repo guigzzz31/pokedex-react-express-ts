@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
-import { ContextTypeCustom, useTabs } from "../AppContext";
+import { ContextTypeCustom } from "../AppContext";
 import { ThemeCustom } from "../theme";
 
 
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
 export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.Element {
   const classes = useStyles()
   console.log("currentTab", pageSelected)
+
   return (
     <Box className={classes.container}>
       <Box
@@ -74,7 +75,7 @@ export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.E
             POKEDEX
           </Typography>
         </Link>
-      </Box >
+      </Box>
       <Box
         onClick={() => handlePage('liked')}
         className={pageSelected === "liked" ? classes.selected : classes.unselected}
@@ -88,6 +89,6 @@ export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.E
           </Typography>
         </Link>
       </Box>
-    </Box >
+    </Box>
   )
 };

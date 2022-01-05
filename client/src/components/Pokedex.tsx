@@ -1,19 +1,13 @@
 import React, { useReducer, useState } from 'react';
-import { Box, Grid, CircularProgress, useMediaQuery } from "@mui/material";
+import { Box, Grid, CircularProgress, useMediaQuery, TextField } from "@mui/material";
 
-import appReducer from '../appReducer';
+import appReducer, { initialState } from '../appReducer';
 
 import PokemonGenerator from './generators/PokemonGenerator';
 
 import useFetchPokemons from '../hooks/useFetchPokemons';
 import SearchBar from './SearchBar/SearchBar';
 
-const initialState = {
-  showAddForm: false,
-  successMessage: "",
-  isLoading: false,
-  pokemons: [],
-};
 
 export default function Pokedex(): JSX.Element {
 
@@ -74,7 +68,7 @@ export default function Pokedex(): JSX.Element {
         handleChangeName={handleChangeName}
         handleChangeNumber={handleChangeNumber}
         handleChangeType={handleChangeType} />
-      {isLoading ? <CircularProgress /> : <PokemonGenerator {...result} />}
+      {isLoading ? <CircularProgress /> : result ? <PokemonGenerator {...result} /> : <TextField>no data</TextField>}
     </Box>
   )
 };

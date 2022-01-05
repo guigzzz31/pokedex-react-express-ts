@@ -12,11 +12,10 @@ const DamageGenerator = (damages: any) => {
     <Box sx={{ display: "flex" }}>
       <Grid direction="column" spacing={1} container>
         {keys
-          ? keys.map((key: string) => {
+          ? keys.map((key: string, i) => {
             return (
-              <Grid key={key} item>
+              <Grid key={i} item>
                 <Box
-                  key={key}
                   sx={{
                     borderRadius: 8,
                     border: 1,
@@ -45,11 +44,10 @@ const DamageGenerator = (damages: any) => {
       </Grid>
       <Grid direction="column" spacing={1} container>
         {values
-          ? values.map((value: any) => {
+          ? values.map((value: any, i) => {
             return (
-              <Grid key={value} item>
+              <Grid key={i} item>
                 <Box
-                  key={value}
                   sx={{
                     borderRadius: 8,
                     border: 1,

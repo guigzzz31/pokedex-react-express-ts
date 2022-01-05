@@ -3,6 +3,7 @@ import {
   Grid,
 } from "@mui/material";
 
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import DamageGenerator from '../generators/DamageGenerator';
 import GraphGenerator from '../generators/GraphGenerator';
@@ -19,46 +20,49 @@ import { Misc } from '../../types/Misc';
 type ModalContentProps = { id: string, name: string, img: string, type: string[], damages: DamageProps, misc: Misc, stats: object, like: Boolean };
 
 export default function ModalContent({ id, name, img, type, damages, stats, misc }: ModalContentProps): JSX.Element {
+  const matches = useMediaQuery('(min-width:700px)');
   return (
-    <Box maxWidth={1600}>
+    <Box>
       <Box
         sx={{
           display: "flex",
+          flexDirection: !matches ? "column" : "row",
           justifyContent: "space-evenly",
           alignItems: "center",
+          width: '100%',
           margin: 2,
           padding: [2, 3, 4]
         }}
       >
-        <Grid item>
+        <Box>
           <PokemonAvatarModale img={img} />
-        </Grid>
-        <Grid item>
-          <Grid direction="column" container>
-            <Grid item>
+        </Box>
+        <Box>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Box>
               <Box mb={1}>
-                <Grid spacing={1} container>
-                  <Grid item>
+                <Box>
+                  <Box>
                     <PokemonNumberModale id={id} />
-                  </Grid>
-                  <Grid item>
+                  </Box>
+                  <Box>
                     <PokemonNameModale name={name} />
-                  </Grid>
-                </Grid>
+                  </Box>
+                </Box>
               </Box>
-            </Grid>
-            <Grid item>
+            </Box>
+            <Box>
               <TypeGenModale type={type} />
               <InfoModale misc={misc} />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
+            </Box>
+          </Box>
+        </Box>
+        <Box>
           <GraphGenerator stats={stats} />
-        </Grid>
-        <Grid item >
+        </Box>
+        <Box>
           <DamageGenerator damages={damages} />
-        </Grid>
+        </Box>
       </Box>
     </Box>
   );

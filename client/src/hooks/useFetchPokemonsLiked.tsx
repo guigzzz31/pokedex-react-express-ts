@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+import { TInitialState } from "../appReducer";
 
-const useFetchPokemonsLiked = (dispatch: any) => {
+const useFetchPokemonsLiked = (dispatch: React.Dispatch<Partial<TInitialState>>) => {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
