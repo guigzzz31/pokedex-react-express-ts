@@ -2,7 +2,7 @@ import { Box, Typography, useMediaQuery } from '@mui/material';
 import {
   Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer,
 } from 'recharts';
-import { Stats } from '../../types/Pokemon';
+import { EStats, statMap, Stats } from '../../types/Pokemon';
 
 
 export default function GraphGenerator(stats: any) {
@@ -13,7 +13,7 @@ export default function GraphGenerator(stats: any) {
   objectArray.forEach(([key, value]) => {
     let statFinal = {
       key: key,
-      stat: key,
+      stat: statMap[key as EStats],
       value: value,
       fullMark: 10000,
     }
@@ -43,10 +43,16 @@ export default function GraphGenerator(stats: any) {
         <RadarChart
           outerRadius={radius}
           data={dataFinal}
-
+        // margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
         >
           <PolarGrid fill='#FFF' stroke="#e1f2fe" />
-          <PolarAngleAxis dataKey="stat" stroke="#FFF" />
+          <PolarAngleAxis
+            dataKey="stat"
+            stroke="#FFF"
+          //tick={false}
+
+          //tickLine 
+          />
           <PolarRadiusAxis domain={[0, 160]} stroke="#CACACA" />
           <Radar name="Stats" dataKey="value" stroke="#B92941" fill="#B92941" fillOpacity={0.6} />
         </RadarChart>
