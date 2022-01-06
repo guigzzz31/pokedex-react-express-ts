@@ -12,11 +12,11 @@ import GraphGenerator from '../generators/GraphGenerator';
 import PokemonAvatar from '../helpers/PokemonAvatar';
 import PokemonName from '../helpers/PokemonName';
 import PokemonNumber from '../helpers/PokemonNumber';
-import InfoModale from '../ModalPokemon/InfoModale';
-import TypeGenModale from '../ModalPokemon/TypeGenModale';
 
 import PokemonProps from '../../types/Pokemon';
 import { ThemeCustom } from '../../theme';
+import DetailsInfos from './DetailsInfos';
+import TypeGenerator from '../generators/TypeGenerator';
 
 export type RouteProps = {
 	id: string
@@ -71,7 +71,7 @@ const DetailsPokemon = () => {
 								<Box
 									sx={{
 										display: "flex",
-										width: "100%",
+										width: "70%",
 										flexDirection: !matches900 ? "row" : "column",
 										justifyContent: "space-between"
 									}}
@@ -83,10 +83,10 @@ const DetailsPokemon = () => {
 							</Box>
 							<Box>
 								<Box my={2}>
-									<TypeGenModale type={type!} />
+									<TypeGenerator type={type!} isDetails />
 								</Box>
 								<Box my={2}>
-									<InfoModale misc={misc!} />
+									<DetailsInfos misc={misc!} />
 								</Box>
 							</Box>
 						</Box>
@@ -94,7 +94,7 @@ const DetailsPokemon = () => {
 					<Box ml='16px'>
 						<GraphGenerator stats={stats!} />
 					</Box>
-					<Box>
+					<Box my={2}>
 						<DamageGenerator damages={damages!} />
 					</Box>
 				</Box>}

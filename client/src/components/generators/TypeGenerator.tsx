@@ -1,38 +1,36 @@
 import {
   Box,
   Grid,
-  Typography
+  Typography,
 } from "@mui/material";
+
 
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 import ParseColorType from "../../hooks/ParseColorType";
 
+type TypeProps = { type: string[], isDetails?: boolean };
 
-type TypeProps = { type: string[] };
-
-export default function TypeGenerator({ type }: TypeProps) {
+export default function TypeGenerator({ type, isDetails }: TypeProps) {
   return (
-    <Grid direction="column" spacing={1} container>
+    <Grid direction={!isDetails ? "column" : "row"} spacing={1} container>
       {type
         ? type.map((item: string) => {
           return (
             <Grid key={item} item>
-              <Box
-                key={item}
-                sx={{
-                  borderRadius: 9,
-                  width: 77,
-                }}
+              <Box key={item} sx={{
+                borderRadius: 9,
+                width: !isDetails ? 77 : 120,
+              }}
                 bgcolor={ParseColorType(item)}
               >
                 <Typography
-                  key={item}
                   align="center"
                   sx={{
                     color: "#FFF",
                     fontWeight: 900,
-                    fontSize: 9,
+                    fontSize: !isDetails ? 10 : 16,
                   }}
+                  key={item}
                 >
                   {CustomToUpperCase(item)}
                 </Typography>

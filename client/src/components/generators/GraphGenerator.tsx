@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import {
   Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer,
 } from 'recharts';
@@ -24,18 +24,33 @@ export default function GraphGenerator(stats: any) {
   const radius = !matches ? 100 : 200
   console.log("matches", size, radius)
   return (
-    <ResponsiveContainer width={size} height={size}>
-      <RadarChart
-        outerRadius={radius}
-        data={dataFinal}
+    <Box
 
+    >
+      {/* <Typography
+        sx={{
+          color: "#fff",
+          fontWeight: 600,
+          fontSize: [20, 22, 24, 26, 32],
+          textAlign: "center",
+          //marginRight: "16px"
+        }}
       >
-        <PolarGrid fill='#FFF' stroke="#e1f2fe" />
-        <PolarAngleAxis dataKey="stat" stroke="#FFF" />
-        <PolarRadiusAxis domain={[0, 160]} stroke="#e1f2fe" />
-        <Radar name="Stats" dataKey="value" stroke="#B92941" fill="#B92941" fillOpacity={0.6} />
-      </RadarChart>
-    </ResponsiveContainer>
+        Stats
+      </Typography> */}
+      <ResponsiveContainer width={size} height={size}>
+        <RadarChart
+          outerRadius={radius}
+          data={dataFinal}
+
+        >
+          <PolarGrid fill='#FFF' stroke="#e1f2fe" />
+          <PolarAngleAxis dataKey="stat" stroke="#FFF" />
+          <PolarRadiusAxis domain={[0, 160]} stroke="#CACACA" />
+          <Radar name="Stats" dataKey="value" stroke="#B92941" fill="#B92941" fillOpacity={0.6} />
+        </RadarChart>
+      </ResponsiveContainer>
+    </Box>
   );
 }
 

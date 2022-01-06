@@ -10,7 +10,6 @@ import PokemonAvatar from "../helpers/PokemonAvatar";
 import PokemonNumber from "../helpers/PokemonNumber";
 import PokemonName from "../helpers/PokemonName";
 import TypeGenerator from "../generators/TypeGenerator";
-import ModalPokemon from '../ModalPokemon/ModalPokemon';
 
 import PokemonProps from '../../types/Pokemon';
 import { Link } from 'react-router-dom';
@@ -18,13 +17,7 @@ import { ContextTypeCustom, TabContext } from '../../AppContext';
 
 export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
   const { img, id, name, type } = pokemon;
-  const [open, setOpen] = React.useState(false);
   const { currentTab, handleChange } = useContext(TabContext)
-  const handleModal = () => {
-    setOpen(!open);
-  };
-
-  console.log("currentTab", currentTab)
 
   return (
     <Link style={{ textDecoration: 'none' }} to={`/api/pokemon/${id}`}>
@@ -37,7 +30,6 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
           padding: 1,
           cursor: "pointer"
         }}
-        onClick={handleModal}
       >
         <Box>
           {img && <PokemonAvatar name={name} img={img} />}
@@ -58,7 +50,6 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
           </Box>
         </Box>
       </Box>
-      {/* <ModalPokemon open={open} handleClose={handleModal} {...pokemon} /> */}
     </Link>
   );
 }
