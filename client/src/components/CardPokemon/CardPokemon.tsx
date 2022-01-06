@@ -46,7 +46,7 @@ export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
         let data = {
           "like": !isToggled
         }
-        const result = await axios.put(`/api/pokemons/${id}`, data);
+        await axios.put(`/api/pokemons/${id}`, data);
       } catch (error) {
         console.log(error);
       }

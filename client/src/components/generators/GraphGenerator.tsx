@@ -1,9 +1,13 @@
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import {
-  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer,
 } from 'recharts';
+import { Stats } from '../../types/Pokemon';
 
 
 export default function GraphGenerator(stats: any) {
+  const matches = useMediaQuery('(min-width:1100px)');
+
   const objectArray = Object.entries(stats.stats);
   let dataFinal: object[] = [];
   objectArray.forEach(([key, value]) => {
@@ -15,13 +19,39 @@ export default function GraphGenerator(stats: any) {
     }
     dataFinal.push(statFinal)
   });
+
+  const width = !matches ? 350 : 520
+  const height = !matches ? 250 : 480
+
+  const radius = !matches ? 100 : 200
   return (
-    <RadarChart cx={250} cy={250} outerRadius={150} width={500} height={500} data={dataFinal}>
-      <PolarGrid />
-      <PolarAngleAxis dataKey="stat" />
-      <PolarRadiusAxis domain={[0, 160]} />
-      <Radar name="Stats" dataKey="value" stroke="#DD2D4A" fill="#DD2D4A" fillOpacity={0.6} />
-    </RadarChart>
+    <Box
+
+    >
+      {/* <Typography
+        sx={{
+          color: "#fff",
+          fontWeight: 600,
+          fontSize: [20, 22, 24, 26, 32],
+          textAlign: "center",
+          //marginRight: "16px"
+        }}
+      >
+        Stats
+      </Typography> */}
+      <ResponsiveContainer width={width} height={height}>
+        <RadarChart
+          outerRadius={radius}
+          data={dataFinal}
+
+        >
+          <PolarGrid fill='#FFF' stroke="#e1f2fe" />
+          <PolarAngleAxis dataKey="stat" stroke="#FFF" />
+          <PolarRadiusAxis domain={[0, 160]} stroke="#CACACA" />
+          <Radar name="Stats" dataKey="value" stroke="#B92941" fill="#B92941" fillOpacity={0.6} />
+        </RadarChart>
+      </ResponsiveContainer>
+    </Box>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 import ParseColorDamage from "../../hooks/ParseColorDamage";
 import ParseColorDamageValue from "../helpers/ParseColorDamageValue";
@@ -8,22 +8,44 @@ import ParseColorDamageValue from "../helpers/ParseColorDamageValue";
 const DamageGenerator = (damages: any) => {
   const keys = Object.keys(damages.damages);
   const values = Object.values(damages.damages);
+  const matches = useMediaQuery('(min-width:1300px)');
+
   return (
-    <Box sx={{ display: "flex" }}>
-      <Grid direction="column" spacing={1} container>
-        {keys
-          ? keys.map((key: string) => {
-            return (
-              <Grid key={key} item>
+    <>
+      <Typography
+        sx={{
+          color: "#fff",
+          fontWeight: 600,
+          fontSize: [20, 22, 24, 26, 32],
+          paddingBottom: "16px"
+        }}
+      >
+        Strengths and Weaknesses
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+          flexDirection: !matches ? "row" : "column",
+          justifyContent: "center",
+          marginTop: 1
+        }}
+      >
+        <Box sx={{ display: "flex", flexDirection: !matches ? "column" : "row" }}>
+          {keys
+            ? keys.map((key: string, i) => {
+              return (
                 <Box
-                  key={key}
+                  key={i}
                   sx={{
                     borderRadius: 8,
                     border: 1,
                     borderWidth: 2,
                     borderColor: "transparent",
                     width: 80,
-                    bgcolor: ParseColorDamage(key)
+                    bgcolor: ParseColorDamage(key),
+                    margin: 0.5
+
                   }}
                 >
                   <Typography
@@ -38,18 +60,16 @@ const DamageGenerator = (damages: any) => {
                     {CustomToUpperCase(key)}
                   </Typography>
                 </Box>
-              </Grid>
-            );
-          })
-          : null}
-      </Grid>
-      <Grid direction="column" spacing={1} container>
-        {values
-          ? values.map((value: any) => {
-            return (
-              <Grid key={value} item>
+              );
+            })
+            : null}
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: !matches ? "column" : "row" }}>
+          {values
+            ? values.map((value: any, i) => {
+              return (
                 <Box
-                  key={value}
+                  key={i}
                   sx={{
                     borderRadius: 8,
                     border: 1,
@@ -57,6 +77,7 @@ const DamageGenerator = (damages: any) => {
                     backgroundColor: "#FFF",
                     borderColor: ParseColorDamageValue(value),
                     width: 80,
+                    margin: 0.5
                   }}
                 >
                   <Typography
@@ -72,12 +93,12 @@ const DamageGenerator = (damages: any) => {
                     {CustomToUpperCase(value)}
                   </Typography>
                 </Box>
-              </Grid>
-            );
-          })
-          : null}
-      </Grid>
-    </Box>
+              );
+            })
+            : null}
+        </Box>
+      </Box>
+    </>
   );
 }
 

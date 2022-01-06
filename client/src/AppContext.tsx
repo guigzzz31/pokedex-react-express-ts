@@ -1,41 +1,40 @@
-import { createContext, SetStateAction, useContext, useState, ReactNode } from "react";
+import React, { createContext, SetStateAction, useContext, useState, ReactNode, ReactChild } from "react";
 
 
 export type ContextTypeCustom = {
 	currentTab: string;
-	handleChange: (event: any, newValue: any, name: any) => void;
+	handleChange: (event: React.ChangeEvent<HTMLInputElement>, newValue: SetStateAction<string>, name: string) => void;
 	handleClick: (event: any, name: any) => void;
-} | null
-
-const AppContext = createContext<ContextTypeCustom>(null);
-
-export interface IChildren {
-	children: any
 }
-export function TabContext({ children }: IChildren) {
+
+export const TabContext = createContext<Partial<ContextTypeCustom>>({});
+
+export interface IProps {
+	children: ReactChild;
+}
+
+const TabProvider: React.FC<IProps> = (props: IProps) => {
 	const [currentTab, setCurrentTab] = useState<string>("pokedex");
 
-	const handleChange = (event: any, newValue: SetStateAction<string>, name: any) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, newValue: SetStateAction<string>, name: string) => {
 		setCurrentTab(newValue);
 	};
 
-	const handleClick = (event: SetStateAction<string>, name: any) => {
+	const handleClick = (event: SetStateAction<string>, name: string) => {
 		setCurrentTab(event);
 	};
 
 	return (
-		<AppContext.Provider
+		<TabContext.Provider
 			value={{
 				currentTab,
 				handleChange,
 				handleClick,
 			}}
 		>
-			{children}
-		</AppContext.Provider>
+			{props.children}
+		</TabContext.Provider>
 	);
 }
 
-export function useTabs(): ContextTypeCustom {
-	return useContext(AppContext);
-}
+export default TabProvider;

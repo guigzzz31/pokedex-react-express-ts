@@ -1,18 +1,20 @@
+export type Stats = {
+  hp: string;
+  attack: string;
+  defense: string;
+  spattack: string;
+  spdefense: string;
+  speed: string;
+}
+
 type PokemonProps = {
   like: boolean,
   id: string;
   name: string;
   img: string;
   type: string[];
-  stats: {
-    hp: string;
-    attack: string;
-    defense: string;
-    spattack: string;
-    spdefense: string;
-    speed: string;
-  },
-  moves: {
+  stats: Stats,
+  moves?: {
     level: {
       learnedat: string;
       name: string;
@@ -67,13 +69,13 @@ type PokemonProps = {
     classification: string,
     height: string,
     weight: string,
-    capturerate: number,
-    eggsteps: string,
-    expgrowth: string,
-    happiness: string,
-    evpoints: string[],
-    fleeflag: string,
-    entreeforestlevel: string,
+    capturerate?: number,
+    eggsteps?: string,
+    expgrowth?: string,
+    happiness?: string,
+    evpoints?: string[],
+    fleeflag?: string,
+    entreeforestlevel?: string,
   }
 }
 

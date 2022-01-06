@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   Box,
@@ -10,24 +10,17 @@ import PokemonAvatar from "../helpers/PokemonAvatar";
 import PokemonNumber from "../helpers/PokemonNumber";
 import PokemonName from "../helpers/PokemonName";
 import TypeGenerator from "../generators/TypeGenerator";
-import ModalPokemon from '../ModalPokemon/ModalPokemon';
 
 import PokemonProps from '../../types/Pokemon';
+import { Link } from 'react-router-dom';
+import { ContextTypeCustom, TabContext } from '../../AppContext';
 
 export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
   const { img, id, name, type } = pokemon;
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { currentTab, handleChange } = useContext(TabContext)
 
   return (
-    <Box>
+    <Link style={{ textDecoration: 'none' }} to={`/api/pokemon/${id}`}>
       <Box
         sx={{
           display: "flex",
@@ -37,7 +30,6 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
           padding: 1,
           cursor: "pointer"
         }}
-        onClick={handleOpen}
       >
         <Box>
           {img && <PokemonAvatar name={name} img={img} />}
@@ -58,7 +50,6 @@ export default function InfoPokemon(pokemon: PokemonProps): JSX.Element {
           </Box>
         </Box>
       </Box>
-      <ModalPokemon open={open} handleClose={handleClose} {...pokemon} />
-    </Box>
+    </Link>
   );
 }
