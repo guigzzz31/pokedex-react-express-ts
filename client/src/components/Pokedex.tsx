@@ -58,7 +58,7 @@ export default function Pokedex(): JSX.Element {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 4,
+        paddingTop: 20,
       }}
     >
       <SearchBar

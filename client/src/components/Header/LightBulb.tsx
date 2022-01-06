@@ -5,65 +5,45 @@ import { makeStyles } from "@mui/styles";
 import { ThemeCustom } from "../../theme";
 
 
-
-type HeaderProps = {
-	handlePage?: any,
-	pageSelected?: string
-}
-
 const useStyles = makeStyles((theme: ThemeCustom) => ({
 	container: {
 		position: "relative",
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: theme.palette.secondary.dark,
 		borderColor: theme.palette.text.secondary,
 		border: "solid",
 		height: 66,
 		width: 66,
-		borderWidth: 4,
+		borderWidth: 6,
 		borderRadius: 90,
+		boxShadow: "inset -20px -20px 60px #4694d2, inset 20px 20px 60px #5ec8ff;"
 	},
-	selected: {
-		//backgroundColor: theme.palette.primary.main,
-		borderColor: theme.palette.text.secondary,
-		display: "flex",
-		justifyContent: "center",
-		border: "solid",
-		borderWidth: 2,
-		borderRadius: 18,
-		padding: 12,
+	subContainer: {
+		backgroundColor: theme.palette.secondary.main,
+		position: "absolute",
+		borderRadius: 70,
+		top: 12,
+		left: 10,
+		width: 18,
+		height: 18,
 	},
-	textSelected: {
-		color: theme.palette.text.secondary,
-		fontWeight: 800,
-		letterSpacing: 3,
-		fontSize: 16,
-	},
-	unselected: {
-		//backgroundColor: theme.palette.primary.main,
-		display: "flex",
-		justifyContent: "center",
-		border: "solid",
-		borderColor: theme.palette.primary.light,
-		borderWidth: 2,
-		borderRadius: 18,
-		padding: 12,
-	},
-	textUnselected: {
-		color: theme.palette.primary.light,
-		fontWeight: 800,
-		letterSpacing: 3,
-		fontSize: 16,
+	bulb: {
+		backgroundColor: theme.palette.secondary.light,
+		position: "absolute",
+		borderRadius: 70,
+		top: 14,
+		left: 14,
+		width: 9,
+		height: 9,
 	},
 }));
 
 
-export default function LightBulb({ handlePage, pageSelected }: HeaderProps): JSX.Element {
+export default function LightBulb(): JSX.Element {
 	const classes = useStyles()
-	console.log("currentTab", pageSelected)
-
 	return (
 		<Box className={classes.container}>
-
+			<Box className={classes.subContainer} />
+			<Box className={classes.bulb} />
 		</Box>
 	)
 };

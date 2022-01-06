@@ -6,9 +6,11 @@ import {
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { borderRadius } from "@mui/system";
 import { Link } from "react-router-dom";
 import { ContextTypeCustom } from "../../AppContext";
 import { ThemeCustom } from "../../theme";
+import Indicators from "./Indicators";
 import LightBulb from "./LightBulb";
 
 
@@ -19,12 +21,28 @@ type HeaderProps = {
 }
 
 const useStyles = makeStyles((theme: ThemeCustom) => ({
+  superContainer: {
+    position: "fixed",
+    zIndex: 99,
+    width: "100%",
+    backgroundColor: theme.palette.primary.main,
+    // boxShadow: "20px 20px 26px #bd394e, -10px -10px 26px #bd394e;",
+    borderBottomLeftRadius: 26,
+    borderBottomRightRadius: 26,
+  },
+  indicatorsContainer: {
+    position: "absolute",
+    top: 4,
+    left: 40
+  },
   container: {
     display: "flex",
-    width: "100%",
-    justifyContent: "space-evenly",
+    //width: "100%",
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 24,
+    boxShadow: "inset -41px -41px 82px #bd394e, inset 41px 41px 82px #ff4d6a;",
+    borderBottomLeftRadius: 26,
+    borderBottomRightRadius: 26,
   },
   selected: {
     //backgroundColor: theme.palette.primary.main,
@@ -63,33 +81,40 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
 
 export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.Element {
   const classes = useStyles()
-  console.log("currentTab", pageSelected)
-
   return (
-    <Box className={classes.container}>
-      <LightBulb />
-      <Box
-        onClick={() => handlePage('pokedex')}
-        className={pageSelected === "pokedex" ? classes.selected : classes.unselected}
-      >
-        <Link style={{ textDecoration: 'none' }} to="/">
-          <Typography className={pageSelected === "pokedex" ? classes.textSelected : classes.textUnselected}>
-            POKEDEX
-          </Typography>
-        </Link>
+    <Box className={classes.superContainer}>
+      <Box className={classes.indicatorsContainer}>
+        <Indicators />
       </Box>
       <Box
-        onClick={() => handlePage('liked')}
-        className={pageSelected === "liked" ? classes.selected : classes.unselected}
+        className={classes.container}
+        py="16px"
+        px="16px"
       >
-        <Link
-          style={{ textDecoration: 'none' }}
-          to="/api/pokemons/liked"
+        <LightBulb />
+        <Box
+          onClick={() => handlePage('pokedex')}
+          className={pageSelected === "pokedex" ? classes.selected : classes.unselected}
         >
-          <Typography className={pageSelected === "liked" ? classes.textSelected : classes.textUnselected}>
-            LIKED
-          </Typography>
-        </Link>
+          <Link style={{ textDecoration: 'none' }} to="/">
+            <Typography className={pageSelected === "pokedex" ? classes.textSelected : classes.textUnselected}>
+              POKEDEX
+            </Typography>
+          </Link>
+        </Box>
+        <Box
+          onClick={() => handlePage('liked')}
+          className={pageSelected === "liked" ? classes.selected : classes.unselected}
+        >
+          <Link
+            style={{ textDecoration: 'none' }}
+            to="/api/pokemons/liked"
+          >
+            <Typography className={pageSelected === "liked" ? classes.textSelected : classes.textUnselected}>
+              LIKED
+            </Typography>
+          </Link>
+        </Box>
       </Box>
     </Box>
   )
