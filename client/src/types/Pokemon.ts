@@ -7,6 +7,24 @@ export type Stats = {
   speed: string;
 }
 
+export enum EStats {
+  Hp = 'hp',
+  Attack = 'attack',
+  Defense = 'defense',
+  SpeAttack = 'spattack',
+  SpeDefense = 'spdefense',
+  Speed = 'speed'
+}
+
+export const statMap: Record<EStats, string> = {
+  [EStats.Hp]: 'HP',
+  [EStats.Attack]: 'ATK',
+  [EStats.Defense]: 'DEF',
+  [EStats.SpeAttack]: 'ATK SP',
+  [EStats.SpeDefense]: 'DEF SP',
+  [EStats.Speed]: 'SPEED',
+}
+
 type PokemonProps = {
   like: boolean,
   id: string;

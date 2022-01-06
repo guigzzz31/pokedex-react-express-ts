@@ -4,9 +4,8 @@ import {
   Typography,
 } from "@mui/material";
 
-
+import { ETypes, typesMapColor } from "../../types/TypesColor";
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
-import ParseColorType from "../../hooks/ParseColorType";
 
 type TypeProps = { type: string[], isDetails?: boolean };
 
@@ -21,7 +20,7 @@ export default function TypeGenerator({ type, isDetails }: TypeProps) {
                 borderRadius: 9,
                 width: !isDetails ? 77 : 120,
               }}
-                bgcolor={ParseColorType(item)}
+                bgcolor={typesMapColor[item as ETypes]}
               >
                 <Typography
                   align="center"

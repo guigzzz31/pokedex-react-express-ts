@@ -2,8 +2,7 @@ import React from "react";
 
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
-import ParseColorDamage from "../../hooks/ParseColorDamage";
-import ParseColorDamageValue from "../helpers/ParseColorDamageValue";
+import { damagesMapColor, EDamages, valuesMapColor, EValues } from "../../types/Damages";
 
 const DamageGenerator = (damages: any) => {
   const keys = Object.keys(damages.damages);
@@ -43,7 +42,8 @@ const DamageGenerator = (damages: any) => {
                     borderWidth: 2,
                     borderColor: "transparent",
                     width: 80,
-                    bgcolor: ParseColorDamage(key),
+                    bgcolor: damagesMapColor[key as EDamages],
+                    // bgcolor: typesMapColor[key as ETypes],
                     margin: 0.5
 
                   }}
@@ -75,7 +75,7 @@ const DamageGenerator = (damages: any) => {
                     border: 1,
                     borderWidth: 2,
                     backgroundColor: "#FFF",
-                    borderColor: ParseColorDamageValue(value),
+                    borderColor: valuesMapColor[value as EValues],
                     width: 80,
                     margin: 0.5
                   }}
@@ -83,7 +83,7 @@ const DamageGenerator = (damages: any) => {
                   <Typography
                     key={value}
                     align="center"
-                    style={{ color: ParseColorDamageValue(value) }}
+                    style={{ color: valuesMapColor[value as EValues] }}
                     sx={{
                       color: "#FFF",
                       fontWeight: 800,

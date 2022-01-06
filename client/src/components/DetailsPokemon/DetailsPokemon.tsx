@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
 		padding: "12px",
 	},
 	icon: {
-		color: theme.palette.primary.dark,
+		color: theme.palette.text.secondary,
 	}
 }));
 

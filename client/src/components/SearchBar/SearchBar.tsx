@@ -6,15 +6,13 @@ import {
 } from "@mui/material";
 
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ParseColorType from "../../hooks/ParseColorType";
 import CustomToUpperCase from "../../hooks/CustomToUpperCase";
 
 import SearchProps from '../../types/Search';
 import { types } from './types';
-import { ThemeCustom } from "../../theme";
-import { makeStyles, styled } from "@mui/styles";
+import { styled } from "@mui/styles";
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { ETypes, typesMapColor } from "../../types/TypesColor";
 
 
 const CssTextField = styled(TextField)({
@@ -135,7 +133,7 @@ export default function SearchBar({
                     paddingRight: 2,
                     fontSize: 12,
                   }}
-                  bgcolor={ParseColorType(type)}>
+                  bgcolor={typesMapColor[type as ETypes]}>
                   {CustomToUpperCase(type)}
                 </Box>
               </MenuItem>
