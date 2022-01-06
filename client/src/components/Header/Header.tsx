@@ -7,8 +7,9 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
-import { ContextTypeCustom } from "../AppContext";
-import { ThemeCustom } from "../theme";
+import { ContextTypeCustom } from "../../AppContext";
+import { ThemeCustom } from "../../theme";
+import LightBulb from "./LightBulb";
 
 
 
@@ -66,6 +67,7 @@ export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.E
 
   return (
     <Box className={classes.container}>
+      <LightBulb />
       <Box
         onClick={() => handlePage('pokedex')}
         className={pageSelected === "pokedex" ? classes.selected : classes.unselected}
