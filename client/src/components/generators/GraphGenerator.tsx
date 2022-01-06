@@ -20,9 +20,10 @@ export default function GraphGenerator(stats: any) {
     dataFinal.push(statFinal)
   });
 
-  const size = !matches ? 350 : 500
+  const width = !matches ? 350 : 520
+  const height = !matches ? 250 : 480
+
   const radius = !matches ? 100 : 200
-  console.log("matches", size, radius)
   return (
     <Box
 
@@ -38,7 +39,7 @@ export default function GraphGenerator(stats: any) {
       >
         Stats
       </Typography> */}
-      <ResponsiveContainer width={size} height={size}>
+      <ResponsiveContainer width={width} height={height}>
         <RadarChart
           outerRadius={radius}
           data={dataFinal}

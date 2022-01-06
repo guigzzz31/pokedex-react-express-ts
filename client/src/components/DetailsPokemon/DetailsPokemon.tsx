@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from '@mui/material';
+import { Box, Button, useMediaQuery } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 
 import { useParams } from 'react-router';
@@ -18,6 +18,9 @@ import { ThemeCustom } from '../../theme';
 import DetailsInfos from './DetailsInfos';
 import TypeGenerator from '../generators/TypeGenerator';
 
+import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';
+
 export type RouteProps = {
 	id: string
 }
@@ -29,11 +32,14 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
 		justifyContent: "space-around",
 		backgroundColor: theme.palette.primary.light,
 		borderWidth: 1,
-		borderRadius: 30,
+		borderRadius: 26,
 		boxShadow: "20px 20px 60px #bd394e, -20px -20px 60px #ff4d6a",
 		margin: "44px 16px 4px 16px",
 		padding: "12px",
 	},
+	icon: {
+		color: theme.palette.primary.dark,
+	}
 }));
 
 const DetailsPokemon = () => {
@@ -99,22 +105,26 @@ const DetailsPokemon = () => {
 					</Box>
 				</Box>}
 			</Box>
-			{/* <Button
-				id={id}
-				onClick={() => toggleTrueFalse(id)}
-				sx={{
-					position: "absolute",
-					borderColor: "#FFF",
-					bottom: 12,
-					right: 0,
-					padding: 0,
-					margin: 0
-				}}
-			>
-				{
-					isToggled ? <FavoriteIcon sx={{ color: "#FFF" }} /> : <FavoriteBorderIcon sx={{ color: "#FFF" }} />
-				}
-			</Button> */}
+			<Link to="/">
+				<Button
+					id={id}
+					sx={{
+						position: "absolute",
+						borderColor: "#FFF",
+						top: !matches900 ? 8 : 12,
+						right: !matches900 ? -6 : 0,
+						padding: 0,
+						margin: 0
+					}}
+				>
+					<CloseIcon
+						sx={{
+							fontSize: !matches900 ? "28px" : "36px"
+						}}
+						className={classes.icon}
+					/>
+				</Button>
+			</Link>
 		</Box>
 	)
 }

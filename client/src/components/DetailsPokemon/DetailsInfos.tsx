@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
     display: "flex",
     width: "100%",
     flexDirection: "column",
-    // backgroundColor: "purple"
+    marginTop: 12,
+    marginBottom: 12
   },
   container: {
     display: "flex",
