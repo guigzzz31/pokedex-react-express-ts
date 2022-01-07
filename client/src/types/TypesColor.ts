@@ -35,5 +35,5 @@ export const typesMapColor: Record<ETypes, string> = {
 	[ETypes.Ghost]: '#805594',
 	[ETypes.Dragon]: '#796BF8',
 	[ETypes.Dark]: '#3c2d23',
-	[ETypes.Steel]: '#E4E4E4',
+	[ETypes.Steel]: '#B8B8D0',
 }

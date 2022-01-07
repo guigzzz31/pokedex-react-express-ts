@@ -58,7 +58,7 @@ export const damagesMapColor: Record<EDamages, string> = {
   [EDamages.Ghost]: '#805594',
   [EDamages.Dragon]: '#796BF8',
   [EDamages.Dark]: '#3c2d23',
-  [EDamages.Steel]: '#E4E4E4',
+  [EDamages.Steel]: '#B8B8D0',
 }
 
 export enum EValues {

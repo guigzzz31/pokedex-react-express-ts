@@ -18,14 +18,16 @@ export type ThemeCustom = {
     }
     error: {
       main: string,
-    }
+      light: string
+    },
     info:
     {
       main: string,
-    }
+      light: string
+    },
     background: {
       default: string
-    }
+    },
   },
 }
 
@@ -38,10 +40,10 @@ const theme: ThemeCustom = createTheme({
       light: "#ee7186",
     },
     secondary: {
-      //green
-      main: "#45b69c",
-      dark: "#E9E9E9",
-      light: "#21d19f",
+      //blue
+      main: "#52AEF7",
+      dark: "#2D92D0",
+      light: "#7AC2F9",
     },
     text: {
       //black
@@ -50,10 +52,11 @@ const theme: ThemeCustom = createTheme({
     },
     error: {
       //blush
-      main: "#DA627D",
+      main: "#45B69C",
+      light: "#FED766"
     },
     info: {
-      main: "#2d92d0",
+      main: "#3fd349",
     },
     //mint cream
     background: {
