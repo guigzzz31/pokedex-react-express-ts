@@ -1,22 +1,30 @@
 import React, { createContext, SetStateAction, useContext, useState, ReactNode, ReactChild } from "react";
+import PokemonProps from "./types/Pokemon";
 
 
 export type ContextTypeCustom = {
-	currentTab: string;
-	handleChange: (event: React.ChangeEvent<HTMLInputElement>, newValue: SetStateAction<string>, name: string) => void;
+	currentTab: string,
+	pokemons: PokemonProps[],
+	likedPokemons: PokemonProps[],
+	isLoading?: boolean,
+	handleChange: (newValue: string) => void;
 	handleClick: (event: any, name: any) => void;
 }
 
-export const TabContext = createContext<Partial<ContextTypeCustom>>({});
+export const AppContext = createContext<Partial<ContextTypeCustom>>({});
 
 export interface IProps {
 	children: ReactChild;
 }
 
-const TabProvider: React.FC<IProps> = (props: IProps) => {
+const Provider: React.FC<IProps> = (props: IProps) => {
 	const [currentTab, setCurrentTab] = useState<string>("pokedex");
+	const [pokemons, setPokemons] = useState<PokemonProps[]>([])
+	const [likedPokemons, setLikedPokemons] = useState<PokemonProps[]>([])
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, newValue: SetStateAction<string>, name: string) => {
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+
+	const handleChange = (newValue: string) => {
 		setCurrentTab(newValue);
 	};
 
@@ -24,17 +32,20 @@ const TabProvider: React.FC<IProps> = (props: IProps) => {
 		setCurrentTab(event);
 	};
 
+
+	console.log("currenttab from context", currentTab)
 	return (
-		<TabContext.Provider
+		<AppContext.Provider
 			value={{
 				currentTab,
+				isLoading,
 				handleChange,
 				handleClick,
 			}}
 		>
 			{props.children}
-		</TabContext.Provider>
+		</AppContext.Provider>
 	);
 }
 
-export default TabProvider;
+export default Provider;

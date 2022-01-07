@@ -11,7 +11,7 @@ import Pokedex from './components/Pokedex';
 import likedPokemons from './components/LikedPokemons';
 import Header from './components/Header/Header';
 import theme from './theme'
-import TabContext from './AppContext';
+import AppContext from './AppContext';
 import { Box } from '@mui/material';
 import DetailsPokemon from './components/DetailsPokemon/DetailsPokemon';
 
@@ -24,11 +24,10 @@ export default function App(): JSX.Element {
     setPageSelected(tab)
   }
 
-  // console.log("state app", pageSelected)
   return (
     <>
       <ThemeProvider theme={theme}>
-        <TabContext>
+        <AppContext>
           <Box
             sx={{
               backgroundColor: theme.palette.primary.main,
@@ -37,7 +36,7 @@ export default function App(): JSX.Element {
             }}
           >
             <Router>
-              <Header handlePage={handlePage} pageSelected={pageSelected} />
+              <Header />
               <Switch>
                 <Route exact path="/" component={Pokedex} />
                 <Route path="/api/pokemons/liked" component={likedPokemons} />
@@ -45,7 +44,7 @@ export default function App(): JSX.Element {
               </Switch>
             </Router>
           </Box>
-        </TabContext>
+        </AppContext>
       </ThemeProvider>
     </>
   )

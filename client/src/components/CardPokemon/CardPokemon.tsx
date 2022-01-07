@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import {
   Box,
   Button,
@@ -15,6 +15,7 @@ import InfoPokemon from "./InfoPokemon";
 import PokemonProps from '../../types/Pokemon';
 import { makeStyles } from "@mui/styles";
 import { ThemeCustom } from "../../theme";
+import appReducer, { initialState } from "../../appReducer";
 
 const useStyles = makeStyles((theme: ThemeCustom) => ({
   container: {
@@ -36,17 +37,33 @@ export default function CardPokemon(pokemon: PokemonProps): JSX.Element {
   const { id, like } = pokemon;
 
   const [isToggled, setToggled] = useState(like);
+  const [state, dispatch] = useReducer(appReducer, initialState);
 
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      try {
+        const result = await axios("/api/pokemons/liked");
+        dispatch({
+          type: "POKEMONS_LIKED_FETCH_SUCCESS",
+          likedPokemons: result.data.result,
+          isLoading: false
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPokemons();
+  }, [isToggled]);
 
   function toggleTrueFalse(id: string) {
     setToggled(!isToggled);
     const likePokemon = async () => {
       try {
-
         let data = {
           "like": !isToggled
         }
-        await axios.put(`/api/pokemons/${id}`, data);
+        const result = await axios.put(`/api/pokemons/${id}`, data);
       } catch (error) {
         console.log(error);
       }
