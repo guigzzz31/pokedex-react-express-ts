@@ -48,6 +48,7 @@ const theme: ThemeCustom = createTheme({
     text: {
       //black
       primary: "#000000",
+      //white-ice
       secondary: "#e1f2fe",
     },
     error: {

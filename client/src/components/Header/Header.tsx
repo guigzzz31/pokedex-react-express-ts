@@ -7,18 +7,12 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { borderRadius } from "@mui/system";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ContextTypeCustom } from "../../AppContext";
+import { AppContext, ContextTypeCustom } from "../../AppContext";
 import { ThemeCustom } from "../../theme";
 import Indicators from "./Indicators";
 import LightBulb from "./LightBulb";
-
-
-
-type HeaderProps = {
-  handlePage?: any,
-  pageSelected?: string
-}
 
 const useStyles = makeStyles((theme: ThemeCustom) => ({
   superContainer: {
@@ -78,8 +72,12 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
 }));
 
 
-export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.Element {
+export default function Header(): JSX.Element {
   const classes = useStyles()
+  const { currentTab, handleChange } = useContext(AppContext)
+
+  console.log("current tab context", currentTab)
+
   return (
     <Box className={classes.superContainer}>
       <Box className={classes.indicatorsContainer}>
@@ -92,24 +90,24 @@ export default function Header({ handlePage, pageSelected }: HeaderProps): JSX.E
       >
         <LightBulb />
         <Box
-          onClick={() => handlePage('pokedex')}
-          className={pageSelected === "pokedex" ? classes.selected : classes.unselected}
+          onClick={() => handleChange && handleChange('pokedex')}
+          className={currentTab === "pokedex" ? classes.selected : classes.unselected}
         >
           <Link style={{ textDecoration: 'none' }} to="/">
-            <Typography className={pageSelected === "pokedex" ? classes.textSelected : classes.textUnselected}>
+            <Typography className={currentTab === "pokedex" ? classes.textSelected : classes.textUnselected}>
               POKEDEX
             </Typography>
           </Link>
         </Box>
         <Box
-          onClick={() => handlePage('liked')}
-          className={pageSelected === "liked" ? classes.selected : classes.unselected}
+          onClick={() => handleChange && handleChange('liked')}
+          className={currentTab === "liked" ? classes.selected : classes.unselected}
         >
           <Link
             style={{ textDecoration: 'none' }}
             to="/api/pokemons/liked"
           >
-            <Typography className={pageSelected === "liked" ? classes.textSelected : classes.textUnselected}>
+            <Typography className={currentTab === "liked" ? classes.textSelected : classes.textUnselected}>
               LIKED
             </Typography>
           </Link>

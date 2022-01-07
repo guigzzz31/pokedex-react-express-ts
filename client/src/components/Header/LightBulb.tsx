@@ -7,6 +7,9 @@ import { styled } from '@mui/system';
 import { keyframes } from '@mui/system';
 
 import { flash } from "react-animations"
+import { useContext, useState } from "react";
+import { AppContext } from "../../AppContext";
+import { useEffect } from "react";
 
 
 const flashAnimation = keyframes`${flash}`
@@ -77,18 +80,36 @@ const Flash3 = styled('div')({
 	width: 7,
 	height: 7,
 	borderRadius: 90,
-	animation: `1.8s ${flashAnimation} 3`
+	animation: `1.8s ${flashAnimation} 2`
 });
 
 export default function LightBulb(): JSX.Element {
 	const classes = useStyles()
+	const { currentTab, handleChange } = useContext(AppContext)
+
+	const [isBlinking, setIsBlinking] = useState(false)
+
+	useEffect(() => {
+		setIsBlinking(true)
+		setTimeout(() => setIsBlinking(false), 400)
+	}, [])
+
+	useEffect(() => {
+		setIsBlinking(true)
+		setTimeout(() => setIsBlinking(false), 400)
+	}, [currentTab])
+
 	return (
 		<Box className={classes.container}>
 			<Box className={classes.subContainer} />
 			<Box className={classes.bulb} />
-			<Flash />
-			<Flash2 />
-			<Flash3 />
+			{isBlinking ?
+				<>
+					<Flash />
+					<Flash2 />
+					<Flash3 />
+				</> : null
+			}
 		</Box>
 	)
 };

@@ -19,7 +19,7 @@ import DetailsInfos from './DetailsInfos';
 import TypeGenerator from '../generators/TypeGenerator';
 
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export type RouteProps = {
 	id: string
@@ -44,12 +44,15 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
 
 const DetailsPokemon = () => {
 	const classes = useStyles();
-
 	const { id } = useParams<RouteProps>();
+	const history = useHistory()
+
 	const [state, dispatch] = useReducer(appReducer, initialState);
-	useFetchPokemonDetails(dispatch, id)
+
 	const matches700 = useMediaQuery('(max-width:700px)');
 	const matches900 = useMediaQuery('(min-width:900px)');
+
+	useFetchPokemonDetails(dispatch, id)
 
 	const { name, img, type, damages, stats, misc } = state?.pokemonDetails!;
 
@@ -99,33 +102,34 @@ const DetailsPokemon = () => {
 							</Box>
 						</Box>
 						<Box ml='16px'>
-							<GraphGenerator stats={stats!} />
+							<GraphGenerator stats={stats!} type={type!} />
 						</Box>
 						<Box my={2}>
 							<DamageGenerator damages={damages!} />
 						</Box>
 					</Box>}
 				</Box>
-				<Link to="/">
-					<Button
-						id={id}
+				{/* <Link to="/"> */}
+				<Button
+					id={id}
+					onClick={() => history.goBack()}
+					sx={{
+						position: "absolute",
+						borderColor: "#FFF",
+						top: !matches900 ? 8 : 12,
+						right: !matches900 ? -6 : 0,
+						padding: 0,
+						margin: 0
+					}}
+				>
+					<CloseIcon
 						sx={{
-							position: "absolute",
-							borderColor: "#FFF",
-							top: !matches900 ? 8 : 12,
-							right: !matches900 ? -6 : 0,
-							padding: 0,
-							margin: 0
+							fontSize: !matches900 ? "28px" : "36px"
 						}}
-					>
-						<CloseIcon
-							sx={{
-								fontSize: !matches900 ? "28px" : "36px"
-							}}
-							className={classes.icon}
-						/>
-					</Button>
-				</Link>
+						className={classes.icon}
+					/>
+				</Button>
+				{/* </Link> */}
 			</Box>
 		</Box>
 	)

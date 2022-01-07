@@ -7,7 +7,6 @@ export type TInitialState = {
   pokemons: PokemonProps[],
   likedPokemons: PokemonProps[],
   pokemonDetails: PokemonProps,
-  //showAddForm: boolean
 }
 
 export const initialState: TInitialState = {
@@ -78,9 +77,6 @@ const appReducer = (state: TInitialState, action: any) => {
 
     case "POKEMONS_LIKED_FETCH_SUCCESS":
       return { ...state, likedPokemons: action.likedPokemons };
-
-    // case "TOGGLE_SHOW_MODALE":
-    //   return { ...state, showAddForm: !state.showAddForm };
 
     default:
       return state;
