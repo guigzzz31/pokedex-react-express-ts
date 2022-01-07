@@ -13,7 +13,7 @@ export default function PokemonNumber({ id, isDetail }: NumberProps): JSX.Elemen
       fontWeight: 900,
       fontSize: !isDetail ? sizeCard : sizeDetail,
     }}>
-      {CustomToUpperCase(id)}
+      #{CustomToUpperCase(id)}
     </Typography>
   )
 }

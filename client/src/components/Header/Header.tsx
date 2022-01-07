@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme: ThemeCustom) => ({
     zIndex: 99,
     width: "100%",
     backgroundColor: theme.palette.primary.main,
-    // boxShadow: "20px 20px 26px #bd394e, -10px -10px 26px #bd394e;",
     borderBottomLeftRadius: 26,
     borderBottomRightRadius: 26,
   },
